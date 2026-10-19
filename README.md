@@ -123,3 +123,7 @@ worker-simulation/
 - 单机单人游戏，状态保存在服务端内存，刷新页面不丢档（每日自动存档兜底）
 - 若修改了外部配置文件，需重启服务生效
 - 头像与场景插图为 AI 生成，位于 `src/main/resources/static/img/`
+
+## 📄 许可证
+
+本项目基于 **MIT License** 开源 —— 可自由使用、修改、分发与商用，仅需保留版权声明。详见 [LICENSE](LICENSE)。
