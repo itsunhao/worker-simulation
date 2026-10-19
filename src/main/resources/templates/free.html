@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>自由模式 · Worker Simulator</title>
+<meta name="theme-color" content="#0a0e18" />
+<link rel="stylesheet" th:href="@{/css/free.css?v=20261012_v179d}">
+</head>
+<body>
+<!-- 3D 城市画布 -->
+<div id="free3d"></div>
+
+<!-- 顶栏 -->
+<header class="ft-bar">
+  <div class="ft-left">
+    <span class="ft-logo">🌃 <b>城市自由模式</b></span>
+    <span class="ft-chip" id="ft-loc">📍 大街</span>
+  </div>
+  <div class="ft-right">
+    <div class="ft-clock" id="ft-clock" title="游戏时间">
+      <span class="ftc-ico" id="ftc-ico">☀️</span>
+      <span class="ftc-time" id="ftc-time">08:30</span>
+      <span class="ftc-phase" id="ftc-phase">白天</span>
+    </div>
+    <button class="ft-btn" id="btn-settings" title="画质设置">⚙ 画质</button>
+    <button class="ft-btn" id="btn-back">◀ 返回游戏</button>
+  </div>
+</header>
+
+<!-- 操作指南 -->
+<div class="ft-hud ft-hint" id="ft-hint">
+  <div class="fh-title">操作指南</div>
+  <div class="fh-row"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>移动</span></div>
+  <div class="fh-row"><kbd>Shift</kbd><span>奔跑</span></div>
+  <div class="fh-row"><kbd>按住左键拖动</kbd><span>调整视角</span></div>
+  <div class="fh-row"><kbd>E</kbd><span>进入地点</span></div>
+  <div class="fh-row"><kbd>Esc</kbd><span>返回游戏</span></div>
+  <div class="fh-row fh-mini"><span>走到地点门口触发进入提示</span></div>
+</div>
+
+<!-- 小地图雷达 -->
+<div class="ft-hud ft-radar-wrap">
+  <div class="radar-title">📡 城市雷达</div>
+  <canvas id="free-radar" width="172" height="172"></canvas>
+</div>
+
+<!-- 画质设置面板 -->
+<div class="ft-settings" id="ft-settings" style="display:none">
+  <div class="fs-head">⚙ 画质设置 <button class="fs-close" id="fs-close">✕</button></div>
+  <div class="fs-row">
+    <span>渲染质量</span>
+    <div class="fs-seg" id="fs-quality">
+      <button data-q="0">低</button><button data-q="1">中</button><button data-q="2">高</button>
+    </div>
+  </div>
+  <div class="fs-row">
+    <span>渲染分辨率</span>
+    <div class="fs-seg" id="fs-res">
+      <button data-res="4">100%</button><button data-res="3">80%</button><button data-res="2">60%</button><button data-res="1">45%</button><button data-res="0">30%</button>
+    </div>
+  </div>
+  <div class="fs-row">
+    <span>抗锯齿 AA</span>
+    <div class="fs-seg" id="fs-aa">
+      <button data-aa="0">关</button><button data-aa="2">2x</button><button data-aa="4">4x</button>
+    </div>
+  </div>
+  <div class="fs-row">
+    <span>泛光 Bloom</span>
+    <label class="fs-switch"><input type="checkbox" id="fs-bloom" checked><i></i></label>
+  </div>
+  <div class="fs-row">
+    <span>实时阴影</span>
+    <label class="fs-switch"><input type="checkbox" id="fs-shadow" checked><i></i></label>
+  </div>
+  <div class="fs-row">
+    <span>色调分级 / 暗角</span>
+    <label class="fs-switch"><input type="checkbox" id="fs-grade" checked><i></i></label>
+  </div>
+  <div class="fs-row">
+    <span>FPS 监测</span>
+    <label class="fs-switch"><input type="checkbox" id="fs-fps" checked><i></i></label>
+  </div>
+  <div class="fs-note">设置即时生效，自动保存 · 高配机器建议开启全部</div>
+</div>
+
+<!-- 帧率 / GPU 面板 -->
+<div class="ft-hud ft-fps" id="ft-fps" title="实时帧率与浏览器 GPU 渲染状态">
+  <div class="ff-head">⚡ 实时性能</div>
+  <div class="ff-body">
+    <div class="ff-numwrap"><span class="ff-num" id="ff-num">--</span><span class="ff-unit">FPS</span></div>
+    <canvas id="ff-graph" width="100" height="30"></canvas>
+  </div>
+  <div class="ff-gpu" id="ff-gpu">正在检测 GPU…<span class="ff-tier" id="ff-tier" style="display:none"> · 已自动降画质</span></div>
+</div>
+
+<!-- 地点进入提示 -->
+<div class="ft-hud ft-entry" id="ft-entry" style="display:none">
+  <span class="fe-icon" id="fe-icon">🏦</span>
+  <div class="fe-meta">
+    <b id="fe-name">银行</b>
+    <small id="fe-desc">按 E 进入</small>
+  </div>
+  <button class="fe-go" id="fe-go">进入 →</button>
+</div>
+
+<!-- 室内场景面板 -->
+<div class="ft-hud ft-room" id="ft-room" style="display:none">
+  <span class="fr-icon" id="fr-icon">🏦</span>
+  <div class="fr-meta">
+    <b class="fr-name" id="fr-name">银行</b>
+    <small class="fr-hint" id="fr-hint">按住左键拖动环视 · Esc 离开</small>
+  </div>
+  <button class="fr-exit" id="fr-exit">🚪 离开</button>
+</div>
+
+<!-- 地点信息卡片 -->
+<div class="ft-modal" id="ft-modal" style="display:none">
+  <div class="fm-card">
+    <div class="fm-head">
+      <span class="fm-icon" id="fm-icon">🏦</span>
+      <div class="fm-title">
+        <b id="fm-name">银行</b>
+        <span class="fm-type" id="fm-type">金融</span>
+      </div>
+    </div>
+    <p class="fm-desc" id="fm-desc"></p>
+    <div class="fm-tags" id="fm-tags"></div>
+    <div class="fm-actions">
+      <button class="fm-btn" id="fm-back">↩ 继续逛街</button>
+      <button class="fm-btn fm-primary" id="fm-enter">进入该地点 ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- 启动加载遮罩 -->
+<div class="ft-loading" id="ft-loading">
+  <div class="fl-inner">
+    <div class="fl-ring"><span class="fl-ring-core">🌃</span></div>
+    <div class="fl-text" id="ft-loading-text">正在生成城市…</div>
+    <div class="fl-bar"><i id="ft-loading-bar"></i></div>
+    <div class="fl-sub" id="ft-loading-sub">环境准备中，请稍候…</div>
+  </div>
+</div>
+
+<!-- 进入地点过渡遮罩 -->
+<div class="ft-loading ft-transit" id="ft-transit" style="display:none">
+  <div class="fl-inner">
+    <div class="fl-ring"><span class="fl-ring-core">🚪</span></div>
+    <div class="fl-text" id="ft-transit-text">正在进入地点…</div>
+    <div class="fl-bar"><i></i></div>
+    <div class="fl-sub">正在为您切换场景…</div>
+  </div>
+</div>
+
+<script th:src="@{/vendor/three-all-r160.js?v=20261016_wg7}"></script>
+<script th:src="@{/js/free.js?v=20261012_v179c}"></script>
+</body>
+</html>

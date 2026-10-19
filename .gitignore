@@ -1,0 +1,13 @@
+target/
+saves/*.json
+.DS_Store
+*.iml
+.idea/
+
+# 开发备份与本地数据
+backups/
+saves-test/
+
+# 本地 HTTPS 密钥（不可公开）
+ssl/
+src/main/resources/ssl/

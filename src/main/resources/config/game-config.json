@@ -1,0 +1,3334 @@
+{
+  "version": "1.8.0",
+  "education": [
+    {
+      "id": "primary",
+      "name": "小学",
+      "desc": "村里小学毕业，字认不全，但一把子力气",
+      "points": 30,
+      "str": 5,
+      "intel": 2,
+      "charm": 1,
+      "luck": 2
+    },
+    {
+      "id": "middle",
+      "name": "初中",
+      "desc": "镇上初中毕业，算识文断字",
+      "points": 40,
+      "str": 4,
+      "intel": 4,
+      "charm": 2,
+      "luck": 3
+    },
+    {
+      "id": "high",
+      "name": "高中",
+      "desc": "县城高中毕业，有点文化底子",
+      "points": 50,
+      "str": 3,
+      "intel": 6,
+      "charm": 3,
+      "luck": 4
+    },
+    {
+      "id": "college",
+      "name": "大专",
+      "desc": "市里大专毕业，可惜专业不太对口",
+      "points": 60,
+      "str": 2,
+      "intel": 9,
+      "charm": 4,
+      "luck": 5
+    },
+    {
+      "id": "bachelor",
+      "name": "本科",
+      "desc": "省城本科毕业，奈何城里竞争太激烈",
+      "points": 70,
+      "str": 2,
+      "intel": 12,
+      "charm": 5,
+      "luck": 6
+    }
+  ],
+  "personalities": [
+    {
+      "id": "outgoing",
+      "name": "开朗",
+      "desc": "见人就笑，自来熟，天生社交好手",
+      "charm": 3,
+      "socialBonus": 0.15
+    },
+    {
+      "id": "steady",
+      "name": "稳重",
+      "desc": "踏实肯干不慌不忙，老板最放心的那种",
+      "stamina": 3,
+      "workBonus": 0.1
+    },
+    {
+      "id": "introverted",
+      "name": "内向",
+      "desc": "话不多但心思细，学习效率出众",
+      "intel": 3,
+      "learnBonus": 0.1,
+      "charm": -1
+    },
+    {
+      "id": "adventurous",
+      "name": "冒险",
+      "desc": "敢闯敢拼，运气来了挡都挡不住",
+      "luck": 4,
+      "riskBonus": 0.15,
+      "stamina": 1
+    },
+    {
+      "id": "tough",
+      "name": "吃苦耐劳",
+      "desc": "能扛能熬，身体是革命的本钱",
+      "str": 3,
+      "stamina": 3
+    }
+  ],
+  "majors": [
+    {
+      "id": "none",
+      "name": "无专业",
+      "desc": "没读过对口专业，全靠一双手",
+      "str": 1
+    },
+    {
+      "id": "computer",
+      "name": "计算机",
+      "desc": "会点电脑基础，学计算机事半功倍",
+      "courseAffinity": "computer",
+      "intel": 2
+    },
+    {
+      "id": "accounting",
+      "name": "会计",
+      "desc": "学过点记账，学会计事半功倍",
+      "courseAffinity": "accounting",
+      "intel": 2
+    },
+    {
+      "id": "cooking",
+      "name": "烹饪",
+      "desc": "家里开过小饭馆，学厨师事半功倍",
+      "courseAffinity": "cooking",
+      "charm": 1
+    },
+    {
+      "id": "machinery",
+      "name": "机械",
+      "desc": "摆弄过农机，学电工焊工事半功倍",
+      "courseAffinity": "electrician",
+      "str": 1,
+      "intel": 1
+    }
+  ],
+  "attributes": [
+    {
+      "id": "str",
+      "name": "体力",
+      "icon": "💪",
+      "desc": "干活的本钱，决定体力消耗效率与搬砖类工作收入"
+    },
+    {
+      "id": "intel",
+      "name": "智力",
+      "icon": "🧠",
+      "desc": "学习的根基，决定培训效率与证书考试通过率"
+    },
+    {
+      "id": "charm",
+      "name": "魅力",
+      "icon": "✨",
+      "desc": "社交与销售的敲门砖，影响好感度增长与部分职业"
+    },
+    {
+      "id": "luck",
+      "name": "运气",
+      "icon": "🍀",
+      "desc": "捡废品、刮刮乐、彩票与随机事件统统靠它"
+    }
+  ],
+  "locations": [
+    {
+      "id": "street",
+      "name": "大街",
+      "icon": "🏙️",
+      "img": "loc-street.jpg",
+      "desc": "城中村的烟火气：小摊、人流、来来往往的打工人"
+    },
+    {
+      "id": "jobmarket",
+      "name": "人才市场",
+      "icon": "🏢",
+      "img": "loc-jobmarket.jpg",
+      "desc": "招工启事贴满墙，机会与陷阱并存"
+    },
+    {
+      "id": "training",
+      "name": "技能培训中心",
+      "icon": "🎓",
+      "img": "loc-training.jpg",
+      "desc": "『包教包会，不过退费』——成人再教育的起点"
+    },
+    {
+      "id": "adu",
+      "name": "成人大学",
+      "icon": "🏛️",
+      "img": "loc-adu.jpg",
+      "desc": "下班充电，文凭是城市的敲门砖——成人高中、大专、专升本任你选"
+    },
+    {
+      "id": "mall",
+      "name": "万象商场",
+      "icon": "🛍️",
+      "img": "loc-mall.jpg",
+      "desc": "一掷千金的销金窟，也是体面人生的入场券"
+    },
+    {
+      "id": "foodstreet",
+      "name": "美食街",
+      "icon": "🍜",
+      "img": "loc-foodstreet.jpg",
+      "desc": "十块钱能吃饱，五十块钱能吃好"
+    },
+    {
+      "id": "home",
+      "name": "住处",
+      "icon": "🏠",
+      "img": "loc-home.jpg",
+      "desc": "深夜的唯一慰藉；没有住处就只能睡大街"
+    },
+    {
+      "id": "workplace",
+      "name": "工作地点",
+      "icon": "🏗️",
+      "img": "loc-workplace.jpg",
+      "desc": "打工人一天待得最久的地方"
+    },
+    {
+      "id": "flower",
+      "name": "花店",
+      "icon": "🌷",
+      "img": "loc-flower.jpg",
+      "desc": "街角小花店，买一束花装点心情，或送给心上人"
+    },
+    {
+      "id": "bar",
+      "name": "酒吧",
+      "icon": "🍸",
+      "img": "loc-bar.jpg",
+      "desc": "灯红酒绿，微醺放空，说不定能邂逅一段故事"
+    },
+    {
+      "id": "billiards",
+      "name": "台球厅",
+      "icon": "🎱",
+      "img": "loc-billiards.jpg",
+      "desc": "一杆清台的快乐，烟味和荷尔蒙的味道"
+    },
+    {
+      "id": "club",
+      "name": "会所",
+      "icon": "🥂",
+      "img": "loc-club.jpg",
+      "desc": "纸醉金迷的高消费场所，来这里的都是有头有脸的人"
+    },
+    {
+      "id": "lottery",
+      "name": "彩票店",
+      "icon": "🎰",
+      "desc": "好运来彩票站：刮刮乐、双色球，一夜暴富的梦从这里开始",
+      "img": "loc-lottery.jpg"
+    },
+    {
+      "id": "braised",
+      "name": "百味鸡",
+      "icon": "🍗",
+      "desc": "老王百味鸡：卤香四溢，一只鸡抚慰一天的疲惫",
+      "img": "loc-braised.jpg"
+    },
+    {
+      "id": "malatang",
+      "name": "地摊麻辣烫",
+      "icon": "🍲",
+      "desc": "街角麻辣烫：自选串串，麻辣鲜香，越吃越上头",
+      "img": "loc-malatang.jpg"
+    },
+    {
+      "id": "dumpling",
+      "name": "饺子馆",
+      "icon": "🥟",
+      "desc": "金元宝饺子馆：薄皮大馅，家的味道",
+      "img": "loc-dumpling.jpg"
+    },
+    {
+      "id": "hotpot",
+      "name": "火锅店",
+      "icon": "🔥",
+      "desc": "蜀香门火锅：红油翻滚，呼朋唤友，麻辣人生",
+      "img": "loc-hotpot.jpg"
+    },
+    {
+      "id": "market",
+      "name": "菜市场",
+      "icon": "🥬",
+      "desc": "东门菜市场：凌晨五点的城市，菜贩子比太阳起得早",
+      "img": "loc-market.jpg"
+    },
+    {
+      "id": "wholesale",
+      "name": "小商品批发",
+      "icon": "📦",
+      "desc": "临江小商品批发城：一箱箱袜子手机壳，摆摊人的进货圣地",
+      "img": "loc-wholesale.jpg"
+    },
+    {
+      "id": "bank",
+      "name": "银行",
+      "icon": "🏦",
+      "img": "loc-bank.jpg",
+      "desc": "城商银行营业部：存钱吃利息，钱生钱的地方"
+    },
+    {
+      "id": "stock",
+      "name": "交易大厅",
+      "icon": "📈",
+      "img": "loc-stock.jpg",
+      "desc": "临江证券交易大厅：红红绿绿的大屏，散户的战场"
+    },
+    {
+      "id": "carshop",
+      "name": "4S店",
+      "icon": "🚗",
+      "img": "loc-carshop.jpg",
+      "desc": "汽车4S店：电动车到跑车，出行体面的起点"
+    },
+    {
+      "id": "estate",
+      "name": "房产中介",
+      "icon": "🏠",
+      "img": "loc-estate.jpg",
+      "desc": "安家房产：在售房源都在这里，看房买房"
+    },
+    {
+      "id": "park",
+      "name": "城市公园",
+      "icon": "🌳",
+      "img": "loc-park.jpg",
+      "desc": "人民公园：下棋吹牛晒太阳，也能和棋友赌两把"
+    },
+    {
+      "id": "nightmarket",
+      "name": "夜市",
+      "icon": "🏮",
+      "img": "loc-nightmarket.jpg",
+      "desc": "城中夜市：撸串套圈，越夜越热闹"
+    },
+    {
+      "id": "ghostmarket",
+      "name": "鬼市",
+      "icon": "🕯️",
+      "img": "loc-ghostmarket.jpg",
+      "desc": "凌晨鬼市：神秘商贩、古董杂货，信则有"
+    },
+    {
+      "id": "ktv",
+      "name": "KTV",
+      "icon": "🎤",
+      "img": "loc-ktv.jpg",
+      "desc": "霓虹灯下的天上人间——点个公主/少爷陪你唱歌喝酒，关系处好了有意外收获"
+    },
+    {
+      "id": "pvclub",
+      "name": "私人会所",
+      "icon": "💆",
+      "img": "loc-pvclub.jpg",
+      "desc": "云水间私人会所，会员制、安静、服务周到——男/女技师随你点，常来有交情"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "flyer",
+      "name": "发传单",
+      "type": "general",
+      "daily": 64,
+      "minStr": 0,
+      "minIntel": 0,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "staminaPerHour": 2,
+      "desc": "站在路口见人就递，脸皮薄干不了",
+      "growAttr": "charm",
+      "icon": "💼"
+    },
+    {
+      "id": "cleaner",
+      "name": "保洁员",
+      "type": "general",
+      "daily": 72,
+      "minStr": 0,
+      "minIntel": 0,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "staminaPerHour": 3,
+      "desc": "城市美容师，起早贪黑",
+      "growAttr": "str",
+      "icon": "💼"
+    },
+    {
+      "id": "waiter",
+      "name": "餐厅服务员",
+      "type": "general",
+      "daily": 80,
+      "minStr": 0,
+      "minIntel": 0,
+      "minCharm": 25,
+      "minPrestige": 0,
+      "staminaPerHour": 3,
+      "desc": "端盘子跑腿，笑脸迎客",
+      "growAttr": "charm",
+      "icon": "🍽️"
+    },
+    {
+      "id": "cashier",
+      "name": "超市收银员",
+      "type": "general",
+      "daily": 88,
+      "minStr": 0,
+      "minIntel": 35,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "staminaPerHour": 2,
+      "desc": "扫码找零，脑子要清醒",
+      "growAttr": "intel",
+      "icon": "💼",
+      "minEducation": "middle"
+    },
+    {
+      "id": "brick",
+      "name": "搬砖工人",
+      "type": "general",
+      "daily": 88,
+      "minStr": 45,
+      "minIntel": 0,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "staminaPerHour": 5,
+      "desc": "真正的搬砖，一砖一瓦都是命",
+      "growAttr": "str",
+      "icon": "💼"
+    },
+    {
+      "id": "clerk",
+      "name": "服装店店员",
+      "type": "general",
+      "daily": 96,
+      "minStr": 0,
+      "minIntel": 0,
+      "minCharm": 40,
+      "minPrestige": 0,
+      "requiredOutfit": "shirt",
+      "staminaPerHour": 2,
+      "desc": "微笑服务，推荐搭配，嘴要甜",
+      "growAttr": "charm",
+      "icon": "💼",
+      "minEducation": "middle"
+    },
+    {
+      "id": "courier",
+      "name": "快递员",
+      "type": "general",
+      "daily": 100,
+      "minStr": 40,
+      "minIntel": 0,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "transportBonus": 0.25,
+      "staminaPerHour": 4,
+      "desc": "风里来雨里去，电动车是命根子",
+      "growAttr": "str",
+      "icon": "📦"
+    },
+    {
+      "id": "guard",
+      "name": "保安",
+      "type": "general",
+      "daily": 100,
+      "minStr": 50,
+      "minIntel": 0,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "staminaPerHour": 3,
+      "desc": "站岗巡逻，夜班熬人",
+      "growAttr": "str",
+      "icon": "💼"
+    },
+    {
+      "id": "rider",
+      "name": "外卖骑手",
+      "type": "general",
+      "daily": 112,
+      "minStr": 45,
+      "minIntel": 0,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "transportBonus": 0.3,
+      "staminaPerHour": 4,
+      "desc": "时间就是金钱，超时扣钱",
+      "growAttr": "str",
+      "icon": "💼"
+    },
+    {
+      "id": "coffee",
+      "name": "咖啡店店员",
+      "type": "general",
+      "daily": 110,
+      "minStr": 0,
+      "minIntel": 0,
+      "minCharm": 35,
+      "minPrestige": 0,
+      "requiredOutfit": "shirt",
+      "staminaPerHour": 2,
+      "desc": "拉花出品，小资氛围第一课",
+      "growAttr": "charm",
+      "icon": "💼",
+      "minEducation": "middle"
+    },
+    {
+      "id": "reception",
+      "name": "会所迎宾员",
+      "type": "general",
+      "daily": 120,
+      "minStr": 0,
+      "minIntel": 0,
+      "minCharm": 50,
+      "minPrestige": 5,
+      "requiredOutfit": "suit",
+      "staminaPerHour": 3,
+      "desc": "门面担当，西装革履站一天",
+      "growAttr": "charm",
+      "icon": "💼",
+      "minEducation": "high"
+    },
+    {
+      "id": "sales",
+      "name": "售楼置业顾问",
+      "type": "general",
+      "daily": 128,
+      "minStr": 0,
+      "minIntel": 0,
+      "minCharm": 50,
+      "minPrestige": 10,
+      "requiredOutfit": "suit",
+      "staminaPerHour": 2,
+      "desc": "底薪+提成，嘴皮子就是生产力",
+      "growAttr": "charm",
+      "icon": "🏢",
+      "minEducation": "high"
+    },
+    {
+      "id": "autosales",
+      "name": "4S店销售顾问",
+      "type": "general",
+      "daily": 145,
+      "minStr": 0,
+      "minIntel": 0,
+      "minCharm": 56,
+      "minPrestige": 12,
+      "requiredOutfit": "suit",
+      "staminaPerHour": 2,
+      "desc": "豪车展厅，一单吃半年",
+      "growAttr": "charm",
+      "icon": "💼",
+      "minEducation": "high"
+    },
+    {
+      "id": "accountant",
+      "name": "初级会计",
+      "type": "special",
+      "daily": 200,
+      "minStr": 0,
+      "minIntel": 55,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "requiredCertificate": "accounting",
+      "staminaPerHour": 1,
+      "desc": "凭证报表，铁饭碗第一步",
+      "growAttr": "intel",
+      "icon": "💼",
+      "minEducation": "college"
+    },
+    {
+      "id": "chef",
+      "name": "厨师",
+      "type": "special",
+      "daily": 180,
+      "minStr": 35,
+      "minIntel": 0,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "requiredCertificate": "cooking",
+      "staminaPerHour": 4,
+      "desc": "颠勺掌灶，后厨热浪滚滚",
+      "growAttr": "str",
+      "icon": "👩‍🍳",
+      "minEducation": "middle"
+    },
+    {
+      "id": "beautician",
+      "name": "美容师",
+      "type": "special",
+      "daily": 160,
+      "minStr": 0,
+      "minIntel": 0,
+      "minCharm": 45,
+      "minPrestige": 0,
+      "requiredCertificate": "beautician",
+      "staminaPerHour": 2,
+      "desc": "手艺活，顾客满意就加钟",
+      "growAttr": "charm",
+      "icon": "💼",
+      "minEducation": "middle"
+    },
+    {
+      "id": "electrician",
+      "name": "电工",
+      "type": "special",
+      "daily": 220,
+      "minStr": 45,
+      "minIntel": 30,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "requiredCertificate": "electrician",
+      "staminaPerHour": 4,
+      "desc": "带电作业，持证上岗，危险补贴高",
+      "growAttr": "intel",
+      "icon": "⚡",
+      "minEducation": "middle"
+    },
+    {
+      "id": "welder",
+      "name": "焊工",
+      "type": "special",
+      "daily": 250,
+      "minStr": 55,
+      "minIntel": 0,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "requiredCertificate": "welder",
+      "staminaPerHour": 5,
+      "desc": "火花四溅，工资高也累",
+      "growAttr": "str",
+      "icon": "💼",
+      "minEducation": "middle"
+    },
+    {
+      "id": "programmer",
+      "name": "程序员",
+      "type": "special",
+      "daily": 300,
+      "minStr": 0,
+      "minIntel": 60,
+      "minCharm": 0,
+      "minPrestige": 0,
+      "requiredCertificate": "computer",
+      "staminaPerHour": 1,
+      "desc": "格子衫程序员，加班加到怀疑人生",
+      "growAttr": "intel",
+      "icon": "💼",
+      "minEducation": "college"
+    },
+    {
+      "id": "chef_senior",
+      "name": "西餐主厨",
+      "type": "special",
+      "daily": 300,
+      "minStr": 45,
+      "minIntel": 0,
+      "minCharm": 30,
+      "minPrestige": 0,
+      "requiredCertificate": "cooking",
+      "staminaPerHour": 3,
+      "desc": "白帽高帽，米其林的门槛",
+      "growAttr": "str",
+      "icon": "💼",
+      "minEducation": "high"
+    },
+    {
+      "id": "accountlead",
+      "name": "会计主管",
+      "type": "special",
+      "daily": 350,
+      "minStr": 0,
+      "minIntel": 70,
+      "minCharm": 0,
+      "minPrestige": 25,
+      "requiredCertificate": "accounting",
+      "staminaPerHour": 1,
+      "desc": "带团队做账，职场老油条专属",
+      "growAttr": "intel",
+      "icon": "💼",
+      "minEducation": "college"
+    },
+    {
+      "id": "network",
+      "name": "网络安全工程师",
+      "type": "special",
+      "daily": 380,
+      "minStr": 0,
+      "minIntel": 75,
+      "minCharm": 0,
+      "minPrestige": 15,
+      "requiredCertificate": "computer",
+      "staminaPerHour": 1,
+      "desc": "攻防一线，黑客见了绕道走",
+      "growAttr": "intel",
+      "icon": "💼",
+      "minEducation": "bachelor"
+    },
+    {
+      "id": "cpa",
+      "name": "注册会计师",
+      "type": "special",
+      "desc": "会计+计算机双证加持，坐在写字楼里算账，职场金领",
+      "requiredCerts": [
+        "accounting",
+        "computer"
+      ],
+      "minStr": 0,
+      "minIntel": 75,
+      "minCharm": 0,
+      "minPrestige": 30,
+      "daily": 480,
+      "staminaPerHour": 6,
+      "growAttr": "intel",
+      "icon": "🧾",
+      "minEducation": "bachelor"
+    },
+    {
+      "id": "analyst",
+      "name": "证券分析师",
+      "type": "special",
+      "desc": "懂会计会编程，交易大厅里的智囊，操盘手的好搭档",
+      "requiredCerts": [
+        "accounting",
+        "computer"
+      ],
+      "minStr": 0,
+      "minIntel": 80,
+      "minCharm": 20,
+      "minPrestige": 20,
+      "daily": 430,
+      "staminaPerHour": 5,
+      "growAttr": "intel",
+      "icon": "📊",
+      "minEducation": "bachelor"
+    },
+    {
+      "id": "fullstack",
+      "name": "全栈工程师",
+      "type": "special",
+      "desc": "计算机+电工双证，前后端通吃还懂硬件，公司离不开你",
+      "requiredCerts": [
+        "computer",
+        "electrician"
+      ],
+      "minStr": 0,
+      "minIntel": 82,
+      "minCharm": 0,
+      "minPrestige": 10,
+      "daily": 500,
+      "staminaPerHour": 5,
+      "growAttr": "intel",
+      "icon": "🖥️",
+      "minEducation": "bachelor"
+    }
+  ],
+  "courses": [
+    {
+      "id": "accounting",
+      "name": "会计",
+      "cost": 2000,
+      "hours": 20,
+      "examFee": 200,
+      "certId": "accounting",
+      "certName": "会计从业资格证",
+      "minIntel": 30,
+      "desc": "记账报税，办公室白领敲门砖",
+      "questions": [
+        {
+          "q": "资产负债表反映的是企业某一时点的财务状况。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "借贷记账法中，「借」通常表示？",
+          "type": "choice",
+          "options": [
+            "资产增加、负债减少",
+            "资产减少、负债增加",
+            "收入增加",
+            "利润增加"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "利润 = 收入 - 费用。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "下列哪一项属于企业的资产？",
+          "type": "choice",
+          "options": [
+            "应付账款",
+            "银行存款",
+            "短期借款",
+            "应交税费"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "发票可以根据需要随意开具。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "我国的会计年度通常从哪一天开始？",
+          "type": "choice",
+          "options": [
+            "6月1日",
+            "1月1日",
+            "10月1日",
+            "3月1日"
+          ],
+          "answer": 1
+        }
+      ],
+      "certIcon": "🧾"
+    },
+    {
+      "id": "cooking",
+      "name": "厨师",
+      "cost": 2500,
+      "hours": 18,
+      "examFee": 250,
+      "certId": "cooking",
+      "certName": "中式烹调师证",
+      "minIntel": 20,
+      "desc": "红案白案，一技傍身走遍天下",
+      "questions": [
+        {
+          "q": "切菜时手指应内扣呈「猫爪状」保护指节。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "炒菜时油温过高容易产生？",
+          "type": "choice",
+          "options": [
+            "更多营养",
+            "致癌物和油烟",
+            "更香的味道",
+            "更少的油"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "生肉和熟食应该分开处理。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "下列哪个不是常见的调味料？",
+          "type": "choice",
+          "options": [
+            "生抽",
+            "蚝油",
+            "洗洁精",
+            "花椒"
+          ],
+          "answer": 2
+        },
+        {
+          "q": "做菜前应洗净双手。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "用高压锅炖肉的主要好处是？",
+          "type": "choice",
+          "options": [
+            "颜色更好看",
+            "节省时间",
+            "增加营养",
+            "更咸"
+          ],
+          "answer": 1
+        }
+      ],
+      "certIcon": "🍳"
+    },
+    {
+      "id": "beautician",
+      "name": "美容美发",
+      "cost": 1800,
+      "hours": 16,
+      "examFee": 200,
+      "certId": "beautician",
+      "certName": "美容师证",
+      "minIntel": 20,
+      "desc": "手艺+口才，女性市场常青树",
+      "questions": [
+        {
+          "q": "染发后 48 小时内不宜洗头。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "油性皮肤应优先选用？",
+          "type": "choice",
+          "options": [
+            "控油洁面产品",
+            "凡士林",
+            "油性面霜",
+            "橄榄油"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "吹风机离头皮越近效果越好。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "烫发主要改变的是头发的？",
+          "type": "choice",
+          "options": [
+            "颜色",
+            "长度",
+            "卷曲结构",
+            "粗细"
+          ],
+          "answer": 2
+        },
+        {
+          "q": "防晒霜只有夏天才需要涂。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "面膜一般敷多久比较合适？",
+          "type": "choice",
+          "options": [
+            "5分钟以内",
+            "15-20分钟",
+            "1小时以上",
+            "一整夜"
+          ],
+          "answer": 1
+        }
+      ],
+      "certIcon": "💇"
+    },
+    {
+      "id": "electrician",
+      "name": "电工",
+      "cost": 2800,
+      "hours": 22,
+      "examFee": 280,
+      "certId": "electrician",
+      "certName": "电工操作证",
+      "minIntel": 35,
+      "desc": "接电布线，高危高薪",
+      "questions": [
+        {
+          "q": "湿手不能触摸电器开关。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "我国家庭电路的标准电压是？",
+          "type": "choice",
+          "options": [
+            "110V",
+            "220V",
+            "380V",
+            "36V"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "电线外皮老化破损可以继续使用。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "发现有人触电，首先应该？",
+          "type": "choice",
+          "options": [
+            "用手拉开",
+            "切断电源",
+            "泼水",
+            "呼叫围观"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "一个插座上不宜同时插过多大功率电器。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "漏电保护器的主要作用是？",
+          "type": "choice",
+          "options": [
+            "省电",
+            "防止触电",
+            "稳压",
+            "计量电量"
+          ],
+          "answer": 1
+        }
+      ],
+      "certIcon": "⚡"
+    },
+    {
+      "id": "computer",
+      "name": "计算机",
+      "cost": 3000,
+      "hours": 25,
+      "examFee": 300,
+      "certId": "computer",
+      "certName": "计算机应用技术证",
+      "minIntel": 50,
+      "desc": "打字排版写代码，互联网入场券",
+      "questions": [
+        {
+          "q": "CPU 是电脑的「大脑」。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "下列哪个是操作系统？",
+          "type": "choice",
+          "options": [
+            "Word",
+            "Windows",
+            "Excel",
+            "Photoshop"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "电脑中病毒后应立即杀毒处理。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "1KB 等于多少字节？",
+          "type": "choice",
+          "options": [
+            "10",
+            "100",
+            "1000",
+            "1024"
+          ],
+          "answer": 3
+        },
+        {
+          "q": "关机前不需要保存文件。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "浏览器的用途是？",
+          "type": "choice",
+          "options": [
+            "打游戏",
+            "访问网页",
+            "修电脑",
+            "杀毒"
+          ],
+          "answer": 1
+        }
+      ],
+      "certIcon": "💻"
+    },
+    {
+      "id": "welder",
+      "name": "焊工",
+      "cost": 3000,
+      "hours": 25,
+      "examFee": 300,
+      "certId": "welder",
+      "certName": "焊工证",
+      "minIntel": 35,
+      "desc": "电焊气割，技术工人的硬通货",
+      "questions": [
+        {
+          "q": "焊接作业时必须佩戴护目镜。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "气焊常用的可燃气体是？",
+          "type": "choice",
+          "options": [
+            "氢气",
+            "天然气",
+            "乙炔",
+            "液化气"
+          ],
+          "answer": 2
+        },
+        {
+          "q": "焊接场地可以堆放易燃物品。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "电焊条的主要作用是？",
+          "type": "choice",
+          "options": [
+            "固定工件",
+            "填充金属",
+            "散热",
+            "照明"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "焊接前应检查设备是否漏电。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "长期吸入焊接烟尘主要危害？",
+          "type": "choice",
+          "options": [
+            "眼睛",
+            "呼吸道",
+            "皮肤",
+            "牙齿"
+          ],
+          "answer": 1
+        }
+      ],
+      "certIcon": "🔥"
+    }
+  ],
+  "foods": [
+    {
+      "id": "bun",
+      "name": "肉包子",
+      "place": "any",
+      "cost": 3,
+      "hunger": 15,
+      "stamina": 0,
+      "mood": 2,
+      "desc": "两块钱的快乐，管饱不管好"
+    },
+    {
+      "id": "instantnoodle",
+      "name": "泡面加肠",
+      "place": "any",
+      "cost": 6,
+      "hunger": 22,
+      "stamina": 1,
+      "mood": 3,
+      "desc": "打工人深夜的国民美食"
+    },
+    {
+      "id": "chaofen",
+      "name": "街边炒粉",
+      "place": "street",
+      "cost": 8,
+      "hunger": 32,
+      "stamina": 4,
+      "mood": 4,
+      "desc": "锅气十足，油大管饱"
+    },
+    {
+      "id": "fruit",
+      "name": "水果摊",
+      "place": "street",
+      "cost": 5,
+      "hunger": 15,
+      "stamina": 5,
+      "mood": 5,
+      "desc": "补充维生素，城里人讲究"
+    },
+    {
+      "id": "boxmeal",
+      "name": "便利店盒饭",
+      "place": "any",
+      "cost": 15,
+      "hunger": 38,
+      "stamina": 3,
+      "mood": 2,
+      "desc": "两荤一素，微波炉一热就开吃"
+    },
+    {
+      "id": "shaxian",
+      "name": "沙县小吃",
+      "place": "foodstreet",
+      "cost": 12,
+      "hunger": 45,
+      "stamina": 5,
+      "mood": 5,
+      "desc": "国民食堂，十块出头吃饱吃好"
+    },
+    {
+      "id": "chuans",
+      "name": "串串香",
+      "place": "foodstreet",
+      "cost": 25,
+      "hunger": 55,
+      "stamina": 8,
+      "mood": 10,
+      "desc": "一串一串又一串，越吃越上头"
+    },
+    {
+      "id": "bbq",
+      "name": "烧烤摊",
+      "place": "foodstreet",
+      "cost": 30,
+      "hunger": 60,
+      "stamina": 8,
+      "mood": 15,
+      "desc": "撸串配啤酒，一天的疲惫都散了"
+    },
+    {
+      "id": "kfc",
+      "name": "炸鸡汉堡",
+      "place": "foodstreet",
+      "cost": 35,
+      "hunger": 52,
+      "stamina": 10,
+      "mood": 12,
+      "desc": "垃圾食品，快乐源泉"
+    },
+    {
+      "id": "hotpot",
+      "name": "小火锅",
+      "place": "foodstreet",
+      "cost": 50,
+      "hunger": 80,
+      "stamina": 15,
+      "mood": 20,
+      "desc": "一个人也要好好吃饭"
+    },
+    {
+      "id": "cook",
+      "name": "自己做饭",
+      "place": "home",
+      "cost": 10,
+      "hunger": 42,
+      "stamina": 8,
+      "mood": 6,
+      "desc": "省钱又健康，就是费时间"
+    },
+    {
+      "id": "takeout",
+      "name": "点外卖",
+      "place": "any",
+      "cost": 20,
+      "hunger": 45,
+      "stamina": 6,
+      "mood": 5,
+      "desc": "动动手指，饭到门口"
+    },
+    {
+      "id": "flower_carnation",
+      "name": "康乃馨",
+      "place": "flower",
+      "cost": 15,
+      "hunger": 0,
+      "stamina": 0,
+      "mood": 6,
+      "desc": "买一束康乃馨，心情+6，适合送人"
+    },
+    {
+      "id": "flower_rose",
+      "name": "玫瑰花束",
+      "place": "flower",
+      "cost": 50,
+      "hunger": 0,
+      "stamina": 0,
+      "mood": 10,
+      "desc": "红玫瑰的浪漫，送人好感翻倍"
+    },
+    {
+      "id": "flower_orchid",
+      "name": "兰花盆栽",
+      "place": "flower",
+      "cost": 120,
+      "hunger": 0,
+      "stamina": 0,
+      "mood": 15,
+      "prestige": 2,
+      "desc": "居家品位之选，摆上它小屋都雅致了"
+    },
+    {
+      "id": "bar_beer",
+      "name": "冰镇啤酒",
+      "place": "bar",
+      "cost": 15,
+      "hunger": 5,
+      "stamina": -3,
+      "mood": 10,
+      "desc": "一杯下肚，烦恼少一半"
+    },
+    {
+      "id": "bar_cocktail",
+      "name": "特调鸡尾酒",
+      "place": "bar",
+      "cost": 40,
+      "hunger": 5,
+      "stamina": -5,
+      "mood": 18,
+      "desc": "微醺壮胆，社交魅力+10%"
+    },
+    {
+      "id": "bar_whisky",
+      "name": "威士忌",
+      "place": "bar",
+      "cost": 120,
+      "hunger": 8,
+      "stamina": -8,
+      "mood": 22,
+      "prestige": 3,
+      "desc": "烈酒入喉，才是大人的味道"
+    },
+    {
+      "id": "billiards_play",
+      "name": "打台球",
+      "place": "billiards",
+      "cost": 20,
+      "hunger": 0,
+      "stamina": -3,
+      "mood": 12,
+      "desc": "一小时的专注，输赢都是快乐"
+    },
+    {
+      "id": "billiards_match",
+      "name": "台球挑战赛",
+      "place": "billiards",
+      "cost": 50,
+      "hunger": 0,
+      "stamina": -5,
+      "mood": 20,
+      "desc": "和高手过招，赢了面子，输了也开心"
+    },
+    {
+      "id": "club_tea",
+      "name": "会所下午茶",
+      "place": "club",
+      "cost": 80,
+      "hunger": 20,
+      "stamina": 4,
+      "mood": 15,
+      "prestige": 2,
+      "desc": "精致点心配红茶，小资生活初体验"
+    },
+    {
+      "id": "club_dinner",
+      "name": "会所晚宴",
+      "place": "club",
+      "cost": 200,
+      "hunger": 45,
+      "stamina": 8,
+      "mood": 25,
+      "prestige": 5,
+      "desc": "一席晚宴，谈生意谈感情都体面"
+    },
+    {
+      "id": "braised_whole",
+      "name": "招牌卤味整鸡",
+      "place": "braised",
+      "cost": 38,
+      "hunger": 55,
+      "stamina": 8,
+      "mood": 10,
+      "desc": "一整个卤到入味的鸡，撕开冒油"
+    },
+    {
+      "id": "braised_leg",
+      "name": "卤鸡腿两只",
+      "place": "braised",
+      "cost": 12,
+      "hunger": 25,
+      "stamina": 4,
+      "mood": 5,
+      "desc": "外皮弹牙，肉嫩汁多"
+    },
+    {
+      "id": "braised_wing",
+      "name": "香辣鸡翅四只",
+      "place": "braised",
+      "cost": 15,
+      "hunger": 22,
+      "stamina": 3,
+      "mood": 6,
+      "desc": "辣得直吸气，还想再来一份"
+    },
+    {
+      "id": "braised_combo",
+      "name": "百味鸡套餐",
+      "place": "braised",
+      "cost": 22,
+      "hunger": 48,
+      "stamina": 6,
+      "mood": 8,
+      "desc": "半只鸡+米饭+凉拌小菜，打工人豪华餐"
+    },
+    {
+      "id": "malatang_veg",
+      "name": "素串麻辣烫十串",
+      "place": "malatang",
+      "cost": 15,
+      "hunger": 30,
+      "stamina": 3,
+      "mood": 6,
+      "desc": "青菜豆腐油条面筋，麻辣汤底暖心暖胃"
+    },
+    {
+      "id": "malatang_meat",
+      "name": "荤素麻辣烫十二串",
+      "place": "malatang",
+      "cost": 22,
+      "hunger": 42,
+      "stamina": 5,
+      "mood": 8,
+      "desc": "午餐肉牛肉丸鹌鹑蛋，越吃越上头"
+    },
+    {
+      "id": "malatang_big",
+      "name": "豪华麻辣烫",
+      "place": "malatang",
+      "cost": 35,
+      "hunger": 55,
+      "stamina": 7,
+      "mood": 10,
+      "desc": "毛肚肥牛虾滑，豪横一把"
+    },
+    {
+      "id": "dumpling_pork",
+      "name": "猪肉白菜水饺十五只",
+      "place": "dumpling",
+      "cost": 16,
+      "hunger": 35,
+      "stamina": 4,
+      "mood": 6,
+      "desc": "薄皮大馅，咬一口满嘴汁"
+    },
+    {
+      "id": "dumpling_veg",
+      "name": "韭菜鸡蛋素饺十五只",
+      "place": "dumpling",
+      "cost": 14,
+      "hunger": 30,
+      "stamina": 3,
+      "mood": 5,
+      "desc": "清淡鲜香，适合想吃素的一天"
+    },
+    {
+      "id": "dumpling_fried",
+      "name": "锅贴煎饺十二只",
+      "place": "dumpling",
+      "cost": 18,
+      "hunger": 32,
+      "stamina": 4,
+      "mood": 7,
+      "desc": "底脆皮韧，蘸醋绝了"
+    },
+    {
+      "id": "dumpling_combo",
+      "name": "饺子套餐",
+      "place": "dumpling",
+      "cost": 25,
+      "hunger": 50,
+      "stamina": 6,
+      "mood": 9,
+      "desc": "水饺+小菜+热汤，吃完浑身舒坦"
+    },
+    {
+      "id": "hotpot_2",
+      "name": "双人火锅套餐",
+      "place": "hotpot",
+      "cost": 88,
+      "hunger": 70,
+      "stamina": 10,
+      "mood": 15,
+      "desc": "牛油锅底+毛肚黄喉肥牛蔬菜拼盘"
+    },
+    {
+      "id": "hotpot_beef",
+      "name": "肥牛卷火锅",
+      "place": "hotpot",
+      "cost": 55,
+      "hunger": 55,
+      "stamina": 8,
+      "mood": 10,
+      "desc": "一整盘肥牛，涮到满足"
+    },
+    {
+      "id": "hotpot_spicy",
+      "name": "九宫格麻辣锅",
+      "place": "hotpot",
+      "cost": 68,
+      "hunger": 60,
+      "stamina": 9,
+      "mood": 12,
+      "desc": "辣到冒汗，越辣越想吃"
+    },
+    {
+      "id": "hotpot_lamb",
+      "name": "涮羊肉火锅",
+      "place": "hotpot",
+      "cost": 60,
+      "hunger": 58,
+      "stamina": 8,
+      "mood": 11,
+      "desc": "手切鲜羊肉，配麻酱一绝"
+    },
+    {
+      "id": "market_veg",
+      "name": "时令蔬菜三斤",
+      "place": "market",
+      "cost": 8,
+      "hunger": 20,
+      "stamina": 2,
+      "mood": 2,
+      "desc": "新鲜水灵，回去自己做饭"
+    },
+    {
+      "id": "market_egg",
+      "name": "土鸡蛋十个",
+      "place": "market",
+      "cost": 12,
+      "hunger": 25,
+      "stamina": 3,
+      "mood": 3,
+      "desc": "个头不大，蛋黄真黄"
+    },
+    {
+      "id": "market_fruit",
+      "name": "水果拼盘",
+      "place": "market",
+      "cost": 15,
+      "hunger": 22,
+      "stamina": 3,
+      "mood": 6,
+      "desc": "苹果香蕉橘子，甜到心里"
+    },
+    {
+      "id": "market_pork",
+      "name": "猪肉两斤",
+      "place": "market",
+      "cost": 25,
+      "hunger": 35,
+      "stamina": 5,
+      "mood": 4,
+      "desc": "五花肉，红烧最香"
+    },
+    {
+      "id": "market_fish",
+      "name": "活鱼一条",
+      "place": "market",
+      "cost": 20,
+      "hunger": 30,
+      "stamina": 4,
+      "mood": 4,
+      "desc": "现杀现卖，清蒸炖汤都行"
+    },
+    {
+      "id": "night_kouxi",
+      "name": "烤冷面",
+      "icon": "🥞",
+      "place": "nightmarket",
+      "stamina": 3,
+      "hunger": 25,
+      "mood": 3,
+      "desc": "夜市灵魂小吃，甜辣酱裹着蛋香",
+      "cost": 8
+    },
+    {
+      "id": "night_zhangyu",
+      "name": "章鱼小丸子",
+      "icon": "🐙",
+      "place": "nightmarket",
+      "stamina": 2,
+      "hunger": 18,
+      "mood": 4,
+      "desc": "外脆里嫩，木鱼花在跳舞",
+      "cost": 10
+    },
+    {
+      "id": "night_tieban",
+      "name": "铁板鱿鱼",
+      "icon": "🦑",
+      "place": "nightmarket",
+      "stamina": 4,
+      "hunger": 22,
+      "mood": 5,
+      "desc": "滋滋冒油的铁板鱿鱼须",
+      "cost": 15
+    },
+    {
+      "id": "night_choudoufu",
+      "name": "长沙臭豆腐",
+      "icon": "🫕",
+      "place": "nightmarket",
+      "stamina": 2,
+      "hunger": 20,
+      "mood": 4,
+      "desc": "闻着臭吃着香，外酥里嫩",
+      "cost": 8
+    },
+    {
+      "id": "night_kaochuan",
+      "name": "烤羊肉串",
+      "icon": "🍢",
+      "place": "nightmarket",
+      "stamina": 3,
+      "hunger": 24,
+      "mood": 5,
+      "desc": "十串起步，孜然辣椒面管够",
+      "cost": 12
+    },
+    {
+      "id": "night_naicha",
+      "name": "手打柠檬茶",
+      "icon": "🧋",
+      "place": "nightmarket",
+      "stamina": 1,
+      "hunger": 5,
+      "mood": 6,
+      "desc": "冰爽解腻，逛夜市的快乐水",
+      "cost": 10
+    }
+  ],
+  "housing": [
+    {
+      "id": "street",
+      "name": "睡大街",
+      "costPerNight": 0,
+      "restore": 40,
+      "mood": -15,
+      "prestige": 0,
+      "risk": 0.2,
+      "desc": "免费，但可能被偷、着凉，还有城管"
+    },
+    {
+      "id": "bridge",
+      "name": "桥洞底下",
+      "costPerNight": 0,
+      "restore": 45,
+      "mood": -10,
+      "prestige": 0,
+      "risk": 0.1,
+      "desc": "流浪汉的根据地，勉强遮风挡雨"
+    },
+    {
+      "id": "dayrent",
+      "name": "日租房",
+      "costPerNight": 40,
+      "restore": 75,
+      "mood": -3,
+      "prestige": 0,
+      "risk": 0.02,
+      "desc": "城中村的廉价旅店，按天算钱"
+    },
+    {
+      "id": "hostel",
+      "name": "青年旅社",
+      "costPerNight": 60,
+      "restore": 80,
+      "mood": 2,
+      "prestige": 0,
+      "risk": 0.01,
+      "desc": "上下铺，天南地北的年轻人"
+    },
+    {
+      "id": "village",
+      "name": "城中村单间",
+      "leaseCost": 800,
+      "leaseDays": 30,
+      "restore": 90,
+      "mood": 5,
+      "prestige": 5,
+      "risk": 0,
+      "desc": "月租800，押一付一，有自己的窝了"
+    },
+    {
+      "id": "apartment",
+      "name": "单身公寓",
+      "leaseCost": 1500,
+      "leaseDays": 30,
+      "restore": 100,
+      "mood": 12,
+      "prestige": 15,
+      "risk": 0,
+      "desc": "电梯房独立卫浴，打工人的体面"
+    },
+    {
+      "id": "ownhome",
+      "name": "自己家",
+      "restore": 100,
+      "mood": 10,
+      "risk": 0,
+      "leaseCost": 0,
+      "costPerNight": 0,
+      "desc": "自己买的房子，想怎么睡怎么睡，恢复体力100%"
+    }
+  ],
+  "mall": [
+    {
+      "id": "tshirt",
+      "name": "白色T恤",
+      "category": "clothes",
+      "cost": 50,
+      "charm": 2,
+      "prestige": 0,
+      "desc": "人手一件的基础款"
+    },
+    {
+      "id": "jeans",
+      "name": "牛仔裤",
+      "category": "pants",
+      "cost": 100,
+      "charm": 2,
+      "prestige": 0,
+      "desc": "耐磨耐脏，打工人标配"
+    },
+    {
+      "id": "cloth_shoes",
+      "name": "布鞋",
+      "category": "shoes",
+      "cost": 60,
+      "charm": 1,
+      "prestige": 0,
+      "desc": "轻便透气，走路不磨脚"
+    },
+    {
+      "id": "watch_elec",
+      "name": "电子表",
+      "category": "watch",
+      "cost": 80,
+      "charm": 2,
+      "prestige": 1,
+      "desc": "准时是打工人第一美德"
+    },
+    {
+      "id": "medicine",
+      "name": "感冒灵+肠胃药",
+      "category": "health",
+      "cost": 15,
+      "charm": 0,
+      "prestige": 0,
+      "desc": "治个感冒拉肚子，恢复健康状态"
+    },
+    {
+      "id": "shirt",
+      "name": "商务衬衫",
+      "category": "clothes",
+      "cost": 150,
+      "charm": 5,
+      "prestige": 2,
+      "desc": "服务行业入职敲门砖"
+    },
+    {
+      "id": "slacks",
+      "name": "西裤",
+      "category": "pants",
+      "cost": 300,
+      "charm": 4,
+      "prestige": 2,
+      "desc": "体面从下半身开始"
+    },
+    {
+      "id": "sneakers",
+      "name": "运动鞋",
+      "category": "shoes",
+      "cost": 300,
+      "charm": 4,
+      "prestige": 2,
+      "desc": "跑单神器，脚底板福音"
+    },
+    {
+      "id": "watch_quartz",
+      "name": "石英表",
+      "category": "watch",
+      "cost": 300,
+      "charm": 5,
+      "prestige": 3,
+      "desc": "职场新人标配"
+    },
+    {
+      "id": "sunglasses",
+      "name": "太阳镜",
+      "category": "accessory",
+      "cost": 200,
+      "charm": 3,
+      "prestige": 2,
+      "desc": "戴上它，回头率+10%"
+    },
+    {
+      "id": "phone",
+      "name": "二手智能手机",
+      "category": "digital",
+      "cost": 500,
+      "charm": 1,
+      "prestige": 3,
+      "desc": "解锁刷手机：看新闻、刷朋友圈，还能查股市行情"
+    },
+    {
+      "id": "suit",
+      "name": "西装",
+      "category": "clothes",
+      "cost": 800,
+      "charm": 15,
+      "prestige": 8,
+      "desc": "售楼、迎宾等体面工作的硬性要求"
+    },
+    {
+      "id": "leather_shoes",
+      "name": "皮鞋",
+      "category": "shoes",
+      "cost": 600,
+      "charm": 8,
+      "prestige": 6,
+      "desc": "擦得锃亮，走路带风"
+    },
+    {
+      "id": "brand_belt",
+      "name": "名牌皮带",
+      "category": "accessory",
+      "cost": 800,
+      "charm": 6,
+      "prestige": 6,
+      "desc": "男人的腰杆子，靠它撑起来"
+    },
+    {
+      "id": "cat",
+      "name": "中华田园猫",
+      "category": "pet",
+      "cost": 300,
+      "charm": 2,
+      "mood": 3,
+      "desc": "每天+3心情，深夜的治愈担当"
+    },
+    {
+      "id": "leather_jacket",
+      "name": "皮夹克",
+      "category": "clothes",
+      "cost": 1200,
+      "charm": 10,
+      "prestige": 6,
+      "desc": "机车范儿，街拍即大片"
+    },
+    {
+      "id": "slack_brand",
+      "name": "休闲西裤",
+      "category": "pants",
+      "cost": 1000,
+      "charm": 8,
+      "prestige": 6,
+      "desc": "质感面料，坐下不鼓包"
+    },
+    {
+      "id": "watch_mech",
+      "name": "机械手表",
+      "category": "watch",
+      "cost": 1500,
+      "charm": 12,
+      "prestige": 10,
+      "desc": "男人三大件之一，面试官多看你一眼"
+    },
+    {
+      "id": "phone_smart",
+      "name": "智能手机",
+      "category": "digital",
+      "cost": 1500,
+      "charm": 6,
+      "prestige": 5,
+      "socialBonus": 0.2,
+      "desc": "社交效率+20%，现代人离不开它"
+    },
+    {
+      "id": "puppy",
+      "name": "小狗",
+      "category": "pet",
+      "cost": 500,
+      "charm": 3,
+      "mood": 4,
+      "desc": "每天+4心情，忠诚的跟屁虫"
+    },
+    {
+      "id": "tablet",
+      "name": "平板电脑",
+      "category": "digital",
+      "cost": 1200,
+      "charm": 4,
+      "prestige": 6,
+      "socialBonus": 0.1,
+      "desc": "刷剧学习两不误，社交效率+10%"
+    },
+    {
+      "id": "evening_dress",
+      "name": "晚礼服",
+      "category": "clothes",
+      "cost": 2500,
+      "charm": 18,
+      "prestige": 12,
+      "desc": "酒会名场面必备，气场全开"
+    },
+    {
+      "id": "brand_shoes",
+      "name": "名牌皮鞋",
+      "category": "shoes",
+      "cost": 2500,
+      "charm": 16,
+      "prestige": 14,
+      "desc": "鞋柜里的门面，谈客户先看鞋"
+    },
+    {
+      "id": "gold_chain",
+      "name": "金链子",
+      "category": "accessory",
+      "cost": 2000,
+      "charm": 10,
+      "prestige": 12,
+      "desc": "过年回村，脖子上的硬通货"
+    },
+    {
+      "id": "suit_brand",
+      "name": "名牌西装",
+      "category": "clothes",
+      "cost": 3000,
+      "charm": 25,
+      "prestige": 18,
+      "desc": "人靠衣装马靠鞍，大客户专供"
+    },
+    {
+      "id": "laptop",
+      "name": "笔记本电脑",
+      "category": "digital",
+      "cost": 3000,
+      "charm": 8,
+      "prestige": 12,
+      "socialBonus": 0.15,
+      "desc": "办公娱乐全能，社交效率+15%"
+    },
+    {
+      "id": "ragdoll",
+      "name": "布偶猫",
+      "category": "pet",
+      "cost": 2000,
+      "charm": 8,
+      "mood": 6,
+      "desc": "每天+6心情，猫中贵族"
+    },
+    {
+      "id": "watch_lux",
+      "name": "劳力士名表",
+      "category": "watch",
+      "cost": 8000,
+      "charm": 25,
+      "prestige": 22,
+      "desc": "戴的不是表，是身份"
+    },
+    {
+      "id": "coat_brand",
+      "name": "名牌大衣",
+      "category": "clothes",
+      "cost": 5000,
+      "charm": 22,
+      "prestige": 20,
+      "desc": "冬天里的气场，全城最靓的仔"
+    }
+  ],
+  "realestate": [
+    {
+      "id": "village_flat",
+      "name": "城中村小产权房",
+      "cost": 50000,
+      "prestige": 15,
+      "passiveIncome": 0,
+      "desc": "五万块，在城里有个真正属于自己的窝"
+    },
+    {
+      "id": "old_flat",
+      "name": "市区老破小",
+      "cost": 300000,
+      "prestige": 40,
+      "passiveIncome": 0,
+      "desc": "学区老破小，鸟枪换炮第一步"
+    },
+    {
+      "id": "shop",
+      "name": "街边小商铺",
+      "cost": 400000,
+      "prestige": 60,
+      "passiveIncome": 10,
+      "desc": "每天被动收租10元，躺赚的开始"
+    },
+    {
+      "id": "lift_flat",
+      "name": "电梯公寓",
+      "cost": 800000,
+      "prestige": 90,
+      "passiveIncome": 0,
+      "desc": "三室两厅，窗明几净"
+    },
+    {
+      "id": "two_bedroom",
+      "name": "电梯两居室",
+      "cost": 1500000,
+      "prestige": 140,
+      "passiveIncome": 0,
+      "desc": "市中心两居，从此不看房东脸色"
+    },
+    {
+      "id": "villa",
+      "name": "郊区别墅",
+      "cost": 3000000,
+      "prestige": 220,
+      "passiveIncome": 0,
+      "desc": "人生巅峰，衣锦还乡的底气"
+    },
+    {
+      "id": "riverside",
+      "name": "江景大平层",
+      "cost": 5000000,
+      "prestige": 300,
+      "passiveIncome": 30,
+      "desc": "一线江景落地窗，每天被动收租30元"
+    }
+  ],
+  "cars": [
+    {
+      "id": "ebike",
+      "name": "电动车",
+      "cost": 2000,
+      "prestige": 3,
+      "deliveryBonus": 0.3,
+      "desc": "外卖快递效率+30%，骑手神器"
+    },
+    {
+      "id": "tricycle",
+      "name": "三轮车",
+      "cost": 4000,
+      "prestige": 5,
+      "deliveryBonus": 0.25,
+      "desc": "能拉货能摆摊，全能选手"
+    },
+    {
+      "id": "motorcycle",
+      "name": "摩托车",
+      "cost": 8000,
+      "prestige": 15,
+      "deliveryBonus": 0.35,
+      "desc": "城里穿梭如风，配送效率+35%"
+    },
+    {
+      "id": "van",
+      "name": "二手面包车",
+      "cost": 15000,
+      "prestige": 10,
+      "deliveryBonus": 0.4,
+      "desc": "快递效率+40%，一车多能"
+    },
+    {
+      "id": "sedan",
+      "name": "二手小轿车",
+      "cost": 50000,
+      "prestige": 25,
+      "deliveryBonus": 0.1,
+      "desc": "过年开回村，面子拉满"
+    },
+    {
+      "id": "newcar",
+      "name": "合资新车",
+      "cost": 150000,
+      "prestige": 50,
+      "deliveryBonus": 0.1,
+      "desc": "4S店提车，成功人士标配"
+    },
+    {
+      "id": "sedan_mid",
+      "name": "中级轿车",
+      "cost": 300000,
+      "prestige": 85,
+      "deliveryBonus": 0.1,
+      "socialBonus": 0.05,
+      "desc": "商务接待不掉价，社交+5%"
+    },
+    {
+      "id": "truck",
+      "name": "货运卡车",
+      "cost": 400000,
+      "prestige": 70,
+      "deliveryBonus": 0.5,
+      "desc": "快递效率+50%，物流王者"
+    },
+    {
+      "id": "luxcar",
+      "name": "豪华轿车",
+      "cost": 800000,
+      "prestige": 130,
+      "deliveryBonus": 0.1,
+      "socialBonus": 0.1,
+      "desc": "相亲市场乱杀，社交+10%"
+    },
+    {
+      "id": "sports",
+      "name": "跑车",
+      "cost": 2000000,
+      "prestige": 220,
+      "deliveryBonus": 0.1,
+      "socialBonus": 0.15,
+      "desc": "炸街声浪，社交+15%，全村最靓"
+    }
+  ],
+  "scratch": {
+    "cost": 10,
+    "winChance": 0.4,
+    "jackpotChance": 0.4,
+    "jackpotMax": 5000000,
+    "prizes": [
+      {
+        "amount": 10,
+        "weight": 55
+      },
+      {
+        "amount": 20,
+        "weight": 25
+      },
+      {
+        "amount": 50,
+        "weight": 12
+      },
+      {
+        "amount": 100,
+        "weight": 6
+      },
+      {
+        "amount": 500,
+        "weight": 2
+      }
+    ],
+    "jackpots": [
+      {
+        "amount": 5000000,
+        "weight": 3
+      },
+      {
+        "amount": 1000000,
+        "weight": 6
+      },
+      {
+        "amount": 200000,
+        "weight": 12
+      },
+      {
+        "amount": 50000,
+        "weight": 22
+      },
+      {
+        "amount": 10000,
+        "weight": 45
+      },
+      {
+        "amount": 2000,
+        "weight": 85
+      },
+      {
+        "amount": 1000,
+        "weight": 88
+      }
+    ]
+  },
+  "lottery": {
+    "costPerTicket": 2,
+    "drawHour": 21,
+    "drawMinute": 30,
+    "prizes": [
+      {
+        "match": 6,
+        "plusBlue": true,
+        "amount": 5000000
+      },
+      {
+        "match": 6,
+        "plusBlue": false,
+        "amount": 500000
+      },
+      {
+        "match": 5,
+        "plusBlue": true,
+        "amount": 3000
+      },
+      {
+        "match": 5,
+        "plusBlue": false,
+        "amount": 200
+      },
+      {
+        "match": 4,
+        "plusBlue": true,
+        "amount": 200
+      },
+      {
+        "match": 4,
+        "plusBlue": false,
+        "amount": 10
+      },
+      {
+        "match": 3,
+        "plusBlue": true,
+        "amount": 10
+      }
+    ]
+  },
+  "npcNames": {
+    "surnames": [
+      "王",
+      "李",
+      "张",
+      "刘",
+      "陈",
+      "杨",
+      "赵",
+      "黄",
+      "周",
+      "吴",
+      "徐",
+      "孙",
+      "胡",
+      "朱",
+      "高",
+      "林",
+      "何",
+      "郭",
+      "马",
+      "罗"
+    ],
+    "male": [
+      "强",
+      "伟",
+      "磊",
+      "军",
+      "洋",
+      "勇",
+      "杰",
+      "涛",
+      "明",
+      "超",
+      "刚",
+      "平",
+      "辉",
+      "鹏",
+      "鑫",
+      "建国",
+      "志强",
+      "国庆",
+      "海峰",
+      "家豪"
+    ],
+    "female": [
+      "芳",
+      "娜",
+      "敏",
+      "静",
+      "丽",
+      "艳",
+      "娟",
+      "霞",
+      "萍",
+      "燕",
+      "玲",
+      "雪",
+      "婷",
+      "丹",
+      "慧",
+      "梦琪",
+      "欣怡",
+      "雨欣",
+      "婷婷",
+      "小美"
+    ]
+  },
+  "npcProfessions": [
+    "外卖小哥",
+    "服装店店员",
+    "会计",
+    "小学老师",
+    "护士",
+    "小主播",
+    "程序员",
+    "厨师",
+    "保安",
+    "房产销售",
+    "大学生",
+    "自由职业者",
+    "小摊贩",
+    "快递员",
+    "白领文员",
+    "理发师"
+  ],
+  "events": [
+    {
+      "id": "wallet",
+      "desc": "你在路边捡到一个钱包，里面居然有钱！",
+      "weight": 8,
+      "moneyMin": 50,
+      "moneyMax": 300,
+      "mood": 5,
+      "luckEffect": 0.5
+    },
+    {
+      "id": "thief",
+      "desc": "人潮里你的钱包被偷了……",
+      "weight": 7,
+      "moneyMin": -300,
+      "moneyMax": -50,
+      "mood": -8,
+      "luckEffect": -0.5
+    },
+    {
+      "id": "fellow",
+      "desc": "遇到了同乡老李，他硬拉着你吃了顿好的。",
+      "weight": 6,
+      "hunger": 30,
+      "mood": 8,
+      "luckEffect": 0.2
+    },
+    {
+      "id": "rain",
+      "desc": "突降暴雨，你淋成了落汤鸡，只好买了把伞。",
+      "weight": 6,
+      "moneyMin": -20,
+      "moneyMax": -20,
+      "stamina": -5,
+      "mood": -5,
+      "requiresLocation": "street"
+    },
+    {
+      "id": "cat",
+      "desc": "一只流浪猫蹭了蹭你的裤腿，心都化了。",
+      "weight": 5,
+      "mood": 6
+    },
+    {
+      "id": "lottery_surprise",
+      "desc": "老板多给你结了二十块辛苦费！",
+      "weight": 4,
+      "moneyMin": 20,
+      "moneyMax": 20,
+      "mood": 4,
+      "requiresJob": true
+    },
+    {
+      "id": "sick",
+      "desc": "换季着凉感冒了，买了点药。",
+      "weight": 4,
+      "moneyMin": -80,
+      "moneyMax": -80,
+      "stamina": -10,
+      "mood": -5
+    },
+    {
+      "id": "mentor",
+      "desc": "培训中心的老师给你单独开小灶，学习效率提升！",
+      "weight": 3,
+      "learnProgress": 8,
+      "mood": 4,
+      "requiresLocation": "training"
+    },
+    {
+      "id": "overtime",
+      "desc": "老板喊你临时加班两小时，给双倍加班费。",
+      "weight": 4,
+      "moneyMin": 40,
+      "moneyMax": 120,
+      "stamina": -8,
+      "requiresJob": true
+    },
+    {
+      "id": "windfall",
+      "desc": "帮路人搬了趟东西，人家硬塞给你五十块。",
+      "weight": 3,
+      "moneyMin": 50,
+      "moneyMax": 50,
+      "mood": 3,
+      "luckEffect": 0.3
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first_money",
+      "name": "第一桶金",
+      "desc": "存款或现金达到 1000 元",
+      "type": "money",
+      "value": 1000,
+      "icon": "💰"
+    },
+    {
+      "id": "first_job",
+      "name": "光荣入职",
+      "desc": "找到第一份工作",
+      "type": "job",
+      "value": 1,
+      "icon": "💼"
+    },
+    {
+      "id": "first_cert",
+      "name": "持证上岗",
+      "desc": "考取第一张职业证书",
+      "type": "cert",
+      "value": 1,
+      "icon": "📜"
+    },
+    {
+      "id": "ten_thousand",
+      "name": "万元户",
+      "desc": "现金达到 10000 元",
+      "type": "money",
+      "value": 10000,
+      "icon": "🏦"
+    },
+    {
+      "id": "love",
+      "name": "坠入爱河",
+      "desc": "确定恋爱关系",
+      "type": "love",
+      "value": 1,
+      "icon": "💕"
+    },
+    {
+      "id": "car_owner",
+      "name": "有车一族",
+      "desc": "拥有第一辆车",
+      "type": "car",
+      "value": 1,
+      "icon": "🚗"
+    },
+    {
+      "id": "homeowner",
+      "name": "城市有房",
+      "desc": "在城里买下第一套房",
+      "type": "estate",
+      "value": 1,
+      "icon": "🏠"
+    },
+    {
+      "id": "marry",
+      "name": "修成正果",
+      "desc": "成功结婚",
+      "type": "marry",
+      "value": 1,
+      "icon": "💍"
+    },
+    {
+      "id": "deposit",
+      "name": "理财达人",
+      "desc": "银行存款达到 10000 元",
+      "type": "deposit",
+      "value": 10000,
+      "icon": "🏧"
+    },
+    {
+      "id": "worker_king",
+      "name": "打工皇帝",
+      "desc": "累计打工收入达到 100000 元",
+      "type": "earn",
+      "value": 100000,
+      "icon": "👑"
+    },
+    {
+      "id": "millionaire",
+      "name": "百万富翁",
+      "desc": "现金达到 1000000 元",
+      "type": "money",
+      "value": 1000000,
+      "icon": "🤑"
+    },
+    {
+      "id": "bigwin",
+      "name": "一夜暴富",
+      "desc": "彩票中得 50 万以上大奖",
+      "type": "bigwin",
+      "value": 1,
+      "icon": "🎰"
+    },
+    {
+      "id": "park_bjwin",
+      "name": "牌桌高手",
+      "desc": "公园 21 点累计赢下 5 局",
+      "type": "bjwin",
+      "value": 5,
+      "icon": "🃏"
+    },
+    {
+      "id": "park_chess",
+      "name": "公园棋圣",
+      "desc": "五子棋累计赢下 3 局",
+      "type": "gomokuw",
+      "value": 3,
+      "icon": "♟️"
+    },
+    {
+      "id": "night_owl",
+      "name": "夜市常客",
+      "desc": "在夜市消费 5 次",
+      "type": "night",
+      "value": 5,
+      "icon": "🏮"
+    },
+    {
+      "id": "ghost_hunter",
+      "name": "鬼市探险家",
+      "desc": "在鬼市消费 3 次",
+      "type": "ghost",
+      "value": 3,
+      "icon": "🕯️"
+    },
+    {
+      "id": "cert_master",
+      "name": "证书达人",
+      "desc": "考取 3 张职业证书",
+      "type": "multicert",
+      "value": 3,
+      "icon": "🎓"
+    },
+    {
+      "id": "fresh_start",
+      "name": "新生",
+      "desc": "开启一次新周目（继承部分资产）",
+      "type": "newgame",
+      "value": 1,
+      "icon": "🔄"
+    },
+    {
+      "id": "night_marksman",
+      "name": "夜市神枪手",
+      "desc": "夜市打气球单局 10 发全中",
+      "type": "balloon",
+      "value": 1,
+      "icon": "🎯"
+    },
+    {
+      "id": "goldfish_master",
+      "name": "捞鱼大师",
+      "desc": "在夜市捞到第一只小金鱼",
+      "type": "goldfish",
+      "value": 1,
+      "icon": "🐟"
+    },
+    {
+      "id": "match_expert",
+      "name": "相亲达人",
+      "desc": "在公园相亲角成功结识 1 位异性",
+      "type": "match",
+      "value": 1,
+      "icon": "💘"
+    },
+    {
+      "id": "quest_ace",
+      "name": "任务达人",
+      "desc": "累计完成 20 个每日任务",
+      "type": "quest",
+      "value": 20,
+      "icon": "📋"
+    },
+    {
+      "id": "college_graduate",
+      "name": "成人大学毕业生",
+      "icon": "🎓",
+      "desc": "从成人大学毕业，拿到学历",
+      "type": "college",
+      "value": 1
+    },
+    {
+      "id": "bachelor",
+      "name": "本科文凭",
+      "icon": "🏅",
+      "desc": "拿到本科学历",
+      "type": "education",
+      "value": "bachelor"
+    }
+  ],
+  "stocks": [
+    {
+      "code": "WY01",
+      "name": "万象科技",
+      "sector": "科技",
+      "basePrice": 42.5,
+      "volatility": 0.045,
+      "icon": "🔬",
+      "desc": "临江最大的消费电子组装厂"
+    },
+    {
+      "code": "CY02",
+      "name": "草原奶茶",
+      "sector": "消费",
+      "basePrice": 18.8,
+      "volatility": 0.055,
+      "icon": "🧋",
+      "desc": "开遍街角的奶茶连锁"
+    },
+    {
+      "code": "WF03",
+      "name": "城市外卖",
+      "sector": "服务",
+      "basePrice": 25.6,
+      "volatility": 0.06,
+      "icon": "🛵",
+      "desc": "外卖骑手平台运营商"
+    },
+    {
+      "code": "FC04",
+      "name": "恒达地产",
+      "sector": "地产",
+      "basePrice": 68.0,
+      "volatility": 0.05,
+      "icon": "🏗️",
+      "desc": "城中村改造项目龙头"
+    },
+    {
+      "code": "XNY05",
+      "name": "新能电力",
+      "sector": "能源",
+      "basePrice": 33.2,
+      "volatility": 0.05,
+      "icon": "⚡",
+      "desc": "城市光伏充电桩运营商"
+    },
+    {
+      "code": "MCN06",
+      "name": "网红传媒",
+      "sector": "传媒",
+      "basePrice": 12.4,
+      "volatility": 0.085,
+      "icon": "🎬",
+      "desc": "孵化了数位百万粉丝网红"
+    }
+  ],
+  "businesses": [
+    {
+      "id": "bbq",
+      "name": "烧烤摊",
+      "icon": "🍢",
+      "desc": "夜市黄金地段的小推车，烟火气就是钞票味",
+      "cost": 2000,
+      "minPrestige": 5,
+      "baseIncome": 80,
+      "stamina": 8
+    },
+    {
+      "id": "milk",
+      "name": "奶茶店",
+      "icon": "🧋",
+      "desc": "写字楼底商的网红奶茶，年轻人排队买",
+      "cost": 8000,
+      "minPrestige": 15,
+      "baseIncome": 200,
+      "stamina": 8
+    },
+    {
+      "id": "noodle",
+      "name": "面馆",
+      "icon": "🍜",
+      "desc": "街角老面馆，一碗牛肉面暖胃又赚钱",
+      "cost": 20000,
+      "minPrestige": 30,
+      "baseIncome": 380,
+      "stamina": 10
+    },
+    {
+      "id": "florist",
+      "name": "花店",
+      "icon": "💐",
+      "desc": "开在商场旁的花店，节日翻倍赚",
+      "cost": 50000,
+      "minPrestige": 50,
+      "baseIncome": 760,
+      "stamina": 8
+    },
+    {
+      "id": "diner",
+      "name": "深夜食堂",
+      "icon": "🏮",
+      "desc": "只在深夜营业的治愈食堂，熟客络绎不绝",
+      "cost": 120000,
+      "minPrestige": 80,
+      "baseIncome": 1500,
+      "stamina": 12
+    }
+  ],
+  "wholesale": [
+    {
+      "id": "sock",
+      "name": "袜子",
+      "icon": "🧦",
+      "unit": "10双/打",
+      "price": 12,
+      "sellBase": 25,
+      "desc": "纯棉厚实，夜市最好卖的货"
+    },
+    {
+      "id": "phoneshell",
+      "name": "手机壳",
+      "icon": "📱",
+      "unit": "10个",
+      "price": 20,
+      "sellBase": 45,
+      "desc": "透明磨砂硅胶，年轻人人手一个"
+    },
+    {
+      "id": "datacable",
+      "name": "数据线",
+      "icon": "🔌",
+      "unit": "10根",
+      "price": 35,
+      "sellBase": 70,
+      "desc": "快充不发热，手机党刚需"
+    },
+    {
+      "id": "toy",
+      "name": "发光玩具",
+      "icon": "🧸",
+      "unit": "10个",
+      "price": 40,
+      "sellBase": 85,
+      "desc": "会闪的玩具枪小风车，小孩走不动道"
+    },
+    {
+      "id": "hairpin",
+      "name": "头绳发卡",
+      "icon": "🎀",
+      "unit": "20个",
+      "price": 15,
+      "sellBase": 32,
+      "desc": "五颜六色，小姑娘一买买一堆"
+    },
+    {
+      "id": "keychain",
+      "name": "钥匙扣",
+      "icon": "🔑",
+      "unit": "10个",
+      "price": 20,
+      "sellBase": 42,
+      "desc": "卡通挂件，情侣款最好卖"
+    },
+    {
+      "id": "towel",
+      "name": "毛巾",
+      "icon": "🧻",
+      "unit": "10条",
+      "price": 35,
+      "sellBase": 68,
+      "desc": "吸水不掉毛，居家必备"
+    },
+    {
+      "id": "umbrella",
+      "name": "折叠伞",
+      "icon": "☂️",
+      "unit": "5把",
+      "price": 40,
+      "sellBase": 80,
+      "desc": "雨天卖翻倍，晴天压箱底"
+    },
+    {
+      "id": "lighter",
+      "name": "打火机",
+      "icon": "🔥",
+      "unit": "20个",
+      "price": 18,
+      "sellBase": 40,
+      "desc": "批发价几毛，卖两块钱一个"
+    },
+    {
+      "id": "mask",
+      "name": "口罩",
+      "icon": "😷",
+      "unit": "50只",
+      "price": 25,
+      "sellBase": 55,
+      "desc": "医用级，工地医院门口好卖"
+    },
+    {
+      "id": "headset",
+      "name": "蓝牙耳机",
+      "icon": "🎧",
+      "unit": "5副",
+      "price": 75,
+      "sellBase": 150,
+      "desc": "仿大牌造型，音质能听"
+    },
+    {
+      "id": "watch",
+      "name": "电子手表",
+      "icon": "⌚",
+      "unit": "5只",
+      "price": 90,
+      "sellBase": 170,
+      "desc": "防水夜光，学生党最爱"
+    },
+    {
+      "id": "cup",
+      "name": "保温杯",
+      "icon": "🥤",
+      "unit": "5个",
+      "price": 60,
+      "sellBase": 120,
+      "desc": "不锈钢内胆，保温一整天"
+    },
+    {
+      "id": "notebook",
+      "name": "笔记本",
+      "icon": "📒",
+      "unit": "10本",
+      "price": 30,
+      "sellBase": 60,
+      "desc": "厚实好写，文具控会挑很久"
+    },
+    {
+      "id": "balloon",
+      "name": "气球",
+      "icon": "🎈",
+      "unit": "20个",
+      "price": 18,
+      "sellBase": 40,
+      "desc": "公园门口小孩必买，成本极低"
+    },
+    {
+      "id": "bubble",
+      "name": "泡泡水玩具",
+      "icon": "🫧",
+      "unit": "10个",
+      "price": 22,
+      "sellBase": 46,
+      "desc": "吹出漫天泡泡，广场舞大妈也爱看"
+    }
+  ],
+  "homeItems": [
+    {
+      "id": "pc_basic",
+      "name": "青鸟·晨光台式机",
+      "brand": "神舟青鸟",
+      "category": "computer",
+      "level": 1,
+      "cost": 2500,
+      "charm": 1,
+      "mood": 1,
+      "desc": "双核处理器 · 4G 内存 · 集成显卡",
+      "unlock": [
+        "线上求职",
+        "股票行情",
+        "网上银行"
+      ]
+    },
+    {
+      "id": "pc_mid",
+      "name": "拯救者·锋芒笔记本",
+      "brand": "联想拯救者",
+      "category": "computer",
+      "level": 2,
+      "cost": 8000,
+      "charm": 3,
+      "mood": 2,
+      "desc": "i5 处理器 · 16G 内存 · RTX4060",
+      "unlock": [
+        "线上求职",
+        "股票行情",
+        "网上银行",
+        "刷剧追番",
+        "网络游戏",
+        "视频通话"
+      ]
+    },
+    {
+      "id": "pc_high",
+      "name": "天顶星·外星人旗舰",
+      "brand": "外星人",
+      "category": "computer",
+      "level": 3,
+      "cost": 25000,
+      "charm": 8,
+      "mood": 3,
+      "desc": "i9 处理器 · 64G 内存 · RTX5090",
+      "unlock": [
+        "线上求职",
+        "股票行情",
+        "网上银行",
+        "刷剧追番",
+        "网络游戏",
+        "视频通话",
+        "带货直播",
+        "接单写代码",
+        "AI 绘画"
+      ]
+    },
+    {
+      "id": "tv_small",
+      "name": "熊猫·21寸彩电",
+      "brand": "熊猫",
+      "category": "tv",
+      "level": 1,
+      "cost": 800,
+      "mood": 2,
+      "desc": "大屁股彩电，能搜到雪花台",
+      "unlock": [
+        "看新闻联播"
+      ]
+    },
+    {
+      "id": "tv_mid",
+      "name": "小米·55寸 4K",
+      "brand": "小米",
+      "category": "tv",
+      "level": 2,
+      "cost": 3200,
+      "mood": 3,
+      "charm": 1,
+      "desc": "4K 超高清，智能系统",
+      "unlock": [
+        "看新闻联播",
+        "追剧影院"
+      ]
+    },
+    {
+      "id": "tv_high",
+      "name": "索尼·85寸 OLED",
+      "brand": "索尼",
+      "category": "tv",
+      "level": 3,
+      "cost": 15000,
+      "mood": 5,
+      "charm": 2,
+      "prestige": 3,
+      "desc": "影院级画质，躺家就是包场",
+      "unlock": [
+        "看新闻联播",
+        "追剧影院",
+        "家庭影院"
+      ]
+    },
+    {
+      "id": "fridge",
+      "name": "美的·双开门冰箱",
+      "brand": "美的",
+      "category": "appliance",
+      "cost": 2500,
+      "mood": 2,
+      "charm": 1,
+      "desc": "食材保鲜，半夜偷吃快乐"
+    },
+    {
+      "id": "washer",
+      "name": "海尔·滚筒洗衣机",
+      "brand": "海尔",
+      "category": "appliance",
+      "cost": 1800,
+      "mood": 1,
+      "desc": "解放双手，衣服常新"
+    },
+    {
+      "id": "ac",
+      "name": "格力·变频空调",
+      "brand": "格力",
+      "category": "appliance",
+      "cost": 3500,
+      "mood": 3,
+      "charm": 1,
+      "desc": "冬暖夏凉，宅家神器"
+    },
+    {
+      "id": "sofa",
+      "name": "宜家·三人沙发",
+      "brand": "宜家",
+      "category": "furniture",
+      "cost": 2000,
+      "mood": 2,
+      "charm": 1,
+      "prestige": 1,
+      "desc": "回家躺平的港湾"
+    },
+    {
+      "id": "bed_good",
+      "name": "席梦思·乳胶床垫",
+      "brand": "席梦思",
+      "category": "furniture",
+      "cost": 4000,
+      "mood": 2,
+      "prestige": 1,
+      "restore": 5,
+      "desc": "睡觉体力恢复 +5"
+    },
+    {
+      "id": "speaker",
+      "name": "漫步者·书架音箱",
+      "brand": "漫步者",
+      "category": "appliance",
+      "cost": 1200,
+      "mood": 2,
+      "desc": "回家放首歌，疲惫都散了"
+    }
+  ],
+  "adultClasses": [
+    {
+      "id": "adu_high",
+      "name": "成人高中班",
+      "icon": "📚",
+      "desc": "初中毕业的成年人进修高中课程，通过毕业考试拿到高中学历，解锁更多工作机会。",
+      "cost": 300,
+      "examFee": 50,
+      "minIntel": 20,
+      "hours": 40,
+      "fromEducation": "middle",
+      "toEducation": "high",
+      "major": "",
+      "questions": [
+        {
+          "q": "下列哪个不是四大名著？",
+          "type": "choice",
+          "options": [
+            "《红楼梦》",
+            "《水浒传》",
+            "《儒林外史》",
+            "《三国演义》"
+          ],
+          "answer": 2
+        },
+        {
+          "q": "我国的国庆节是几月几日？",
+          "type": "choice",
+          "options": [
+            "10月1日",
+            "1月1日",
+            "5月1日",
+            "8月1日"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "“三人行，必有我师焉”出自？",
+          "type": "choice",
+          "options": [
+            "《论语》",
+            "《孟子》",
+            "《庄子》",
+            "《韩非子》"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "1千克等于多少克？",
+          "type": "choice",
+          "options": [
+            "100克",
+            "1000克",
+            "10000克",
+            "10克"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "《静夜思》的作者是李白。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "adu_college_computer",
+      "name": "计算机大专班",
+      "icon": "💻",
+      "desc": "成人高考·计算机应用技术专业，毕业后获得大专学历+计算机专业",
+      "cost": 800,
+      "examFee": 100,
+      "minIntel": 35,
+      "hours": 80,
+      "fromEducation": "high",
+      "toEducation": "college",
+      "major": "computer",
+      "questions": [
+        {
+          "q": "计算机的“大脑”通常指？",
+          "type": "choice",
+          "options": [
+            "显示器",
+            "CPU",
+            "键盘",
+            "鼠标"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "下列哪个是编程语言？",
+          "type": "choice",
+          "options": [
+            "Word",
+            "Excel",
+            "Python",
+            "Photoshop"
+          ],
+          "answer": 2
+        },
+        {
+          "q": "互联网的英文缩写是？",
+          "type": "choice",
+          "options": [
+            "IT",
+            "WWW",
+            "IP",
+            "USB"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "计算机中的数据最小单位是？",
+          "type": "choice",
+          "options": [
+            "字节",
+            "比特",
+            "千字节",
+            "兆字节"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "操作系统是管理计算机软硬件资源的软件。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "adu_college_accounting",
+      "name": "会计大专班",
+      "icon": "🧾",
+      "desc": "成人高考·会计学专业，毕业后获得大专学历+会计专业",
+      "cost": 800,
+      "examFee": 100,
+      "minIntel": 35,
+      "hours": 80,
+      "fromEducation": "high",
+      "toEducation": "college",
+      "major": "accounting",
+      "questions": [
+        {
+          "q": "会计中“收入-费用”等于？",
+          "type": "choice",
+          "options": [
+            "资产",
+            "利润",
+            "负债",
+            "所有者权益"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "下列哪项是会计要素？",
+          "type": "choice",
+          "options": [
+            "爱情",
+            "友情",
+            "资产",
+            "运气"
+          ],
+          "answer": 2
+        },
+        {
+          "q": "会计记账的基本方法是？",
+          "type": "choice",
+          "options": [
+            "单式记账",
+            "复式记账",
+            "流水记账",
+            "随意记账"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "财务报表中最常用的是？",
+          "type": "choice",
+          "options": [
+            "体检报告",
+            "资产负债表",
+            "成绩单",
+            "通讯录"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "借贷记账法中“有借必有贷，借贷必相等”。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "adu_bachelor",
+      "name": "专升本本科班",
+      "icon": "🎓",
+      "desc": "专升本考试，大专升本科，文凭更硬，白领工作随便挑",
+      "cost": 2000,
+      "examFee": 200,
+      "minIntel": 50,
+      "hours": 120,
+      "fromEducation": "college",
+      "toEducation": "bachelor",
+      "major": "",
+      "questions": [
+        {
+          "q": "下列哪项属于“白领”工作？",
+          "type": "choice",
+          "options": [
+            "搬砖",
+            "程序员",
+            "保安",
+            "保洁"
+          ],
+          "answer": 1
+        },
+        {
+          "q": "本科学位一般修几年？",
+          "type": "choice",
+          "options": [
+            "1年",
+            "2年",
+            "4年",
+            "8年"
+          ],
+          "answer": 2
+        },
+        {
+          "q": "研究生入学考试常简称？",
+          "type": "choice",
+          "options": [
+            "高考",
+            "中考",
+            "考研",
+            "考公"
+          ],
+          "answer": 2
+        },
+        {
+          "q": "《高等数学》属于哪个学科门类？",
+          "type": "choice",
+          "options": [
+            "理学",
+            "文学",
+            "史学",
+            "哲学"
+          ],
+          "answer": 0
+        },
+        {
+          "q": "本科毕业可以报考硕士研究生。",
+          "type": "judge",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+server:
+  port: 8897
+
+spring:
+  application:
+    name: worker-simulator
+  thymeleaf:
+    cache: false
+  web:
+    resources:
+      cache:
+        period: 604800
+        cachecontrol:
+          max-age: 604800
+
+# 游戏参数（可通过命令行 --game.xxx 覆盖）
+game:
+  # 外部配置文件路径（绝对路径或 classpath 相对路径；留空则读取内置 config/game-config.json）
+  # 示例: --game.config-path=/Users/you/worker-simulator/config/game-config.json
+  config-path: ""
+  # 存档目录（相对运行目录）
+  save-dir: ./saves
+  # 1 个游戏分钟 = 1/时间刻度 个现实秒（speed 在此基础倍速）
+  time-scale: 1
+  # 初始设定
+  start-day: 1
+  start-hour: 8
+  start-minute: 0
+  start-money: 500
+
+logging:
+  level:
+    root: info

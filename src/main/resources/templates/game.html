@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker Simulator · 终端</title>
+    <link rel="stylesheet" th:href="@{/vendor/xterm.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css?v=20261008_v142}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧱</text></svg>">
+</head>
+<body class="game-body">
+<!-- 主页面初始化 loading（终端风全屏） -->
+<div id="boot-loading" class="boot-loading">
+    <div class="boot-card">
+        <div class="boot-logo"><span>&gt;_</span> worker_sim <span class="bl-underscore">▌</span></div>
+        <div class="boot-title">Worker Simulator</div>
+        <div class="boot-sub">从一无所有，到在这座城市活下去</div>
+        <div class="boot-bar"><div class="boot-bar-fill" id="boot-bar-fill"></div></div>
+        <div class="boot-log" id="boot-log"><span>initializing worker_sim…</span><span class="bl-cursor"></span></div>
+    </div>
+</div>
+<!-- 执行进度条（顶部流光） -->
+<div class="exec-progress" id="exec-progress"><div class="exec-progress-fill"></div></div>
+
+<!-- 顶栏 -->
+<header class="topbar">
+    <div class="topbar-left">
+        <span class="topbar-logo"><span class="tb-mark">&gt;_</span> worker_sim</span>
+        <span class="topbar-time" id="game-clock">第1天 08:00</span>
+        <span class="chip chip-loc" id="chip-loc">🏙️ 大街</span>
+        <span class="chip chip-weather" id="chip-weather" title="今日天气">☀️ 晴</span>
+    </div>
+    <div class="topbar-right">
+        <button class="btn btn-mini" id="btn-pause" onclick="togglePause()">⏸ 暂停</button>
+        <select class="save-select" id="save-slot" title="存档槽位">
+            <option value="1">槽位1</option>
+            <option value="2">槽位2</option>
+            <option value="3">槽位3</option>
+        </select>
+        <button class="btn btn-mini" onclick="doSave()">💾 存档</button>
+        <button class="btn btn-mini" onclick="doLoad()">📂 读档</button>
+        <button class="btn btn-mini btn-free" id="btn-free" onclick="openFreeMode()">🌃 自由模式</button>
+        <button class="btn btn-mini btn-danger" onclick="doReset()">✖ 新游戏</button>
+    </div>
+</header>
+
+<main class="game-main">
+    <!-- 左：场景 + 终端 -->
+    <section class="game-left">
+        <!-- 城市工作站：3D 夜景 → 夜色过渡 → 地点实景 → 终端输出 → 快捷命令，一个整体 -->
+        <div class="workbench">
+            <div class="visual-panel">
+                <div class="scene-img-wrap">
+                    <img id="scene-img" src="/img/loc-street.jpg?v=20260911" alt="场景">
+                    <div class="scene-tag">
+                        <span class="scene-icon" id="scene-icon">🏙️</span>
+                        <span id="scene-name">大街</span>
+                    </div>
+                    <div class="scene-desc" id="scene-desc"></div>
+                </div>
+            </div>
+
+            <div class="terminal-card">
+                <div id="terminal"></div>
+            </div>
+
+            <div class="cmd-bar">
+                <div class="cmd-tabs" id="cmd-tabs"></div>
+                <div class="cmd-btns" id="cmd-btns"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 右：HUD -->
+    <aside class="game-right">
+        <div class="panel char-panel">
+            <div class="char-head">
+                <div class="avatar" id="avatar">👨</div>
+                <div>
+                    <div class="char-name" id="char-name">——</div>
+                    <div class="char-tags" id="char-tags">——</div>
+                </div>
+            </div>
+            <div class="vitals">
+                <div class="vital tip-box" id="tip-stamina"><label>体力</label><div class="bar"><div class="bar-fill" id="bar-stamina" style="width:0%"></div></div><span id="num-stamina">0</span></div>
+                <div class="vital tip-box" id="tip-hunger"><label>饱腹</label><div class="bar"><div class="bar-fill fill-orange" id="bar-hunger" style="width:0%"></div></div><span id="num-hunger">0</span></div>
+                <div class="vital tip-box" id="tip-mood"><label>心情</label><div class="bar"><div class="bar-fill fill-pink" id="bar-mood" style="width:0%"></div></div><span id="num-mood">0</span></div>
+            </div>
+            <div class="skills">
+                <span class="tip-box" id="tip-str">💪 <b id="sk-str">0</b></span>
+                <span class="tip-box" id="tip-intel">🧠 <b id="sk-intel">0</b></span>
+                <span class="tip-box" id="tip-charm">✨ <b id="sk-charm">0</b></span>
+                <span class="tip-box" id="tip-luck">🍀 <b id="sk-luck">0</b></span>
+            </div>
+            <div class="wallet">
+                <span class="w-money">💰 <b id="money">0</b> 元</span>
+                <span class="w-bank">🏦 <b id="deposit">0</b></span>
+                <span class="w-prestige">⭐ <b id="prestige">0</b></span>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">📌 现状</div>
+            <div class="kv">
+                <div><span>职业</span><b id="hud-job">无业游民</b></div>
+                <div><span>证书</span><b id="hud-certs">无</b></div>
+                <div><span>住处</span><b id="hud-housing">睡大街</b></div>
+                <div><span>车辆</span><b id="hud-cars">无</b></div>
+                <div><span>房产</span><b id="hud-estates">无</b></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">💕 关系 <span class="dim" id="partner-info"></span></div>
+            <div id="npc-list" class="npc-list"><p class="dim">还没有认识的人，去大街逛逛吧</p></div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">🏆 成就 <span class="dim" id="ach-count">0/0</span></div>
+            <div class="ach-bar"><div class="ach-fill" id="ach-fill" style="width:0%"></div></div>
+        </div>
+
+        <div class="panel quest-panel" onclick="openQuestModal()" title="点击查看任务详情">
+            <div class="panel-title">📋 每日任务 <span class="dim" id="quest-summary">0/3</span></div>
+            <div id="quest-list" class="quest-list"></div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">📜 事件日志</div>
+            <div id="event-log" class="event-log"><p class="dim">暂无</p></div>
+        </div>
+    </aside>
+</main>
+
+<div class="modal-mask" id="map-modal" style="display:none">
+    <div class="modal map-modal">
+        <div class="modal-head">
+            <span class="modal-title">🗺 临江城市地图</span>
+            <span class="modal-step">点击地图上的地点前往</span>
+            <button class="btn btn-mini" onclick="closeMapModal()">✕ 关闭</button>
+        </div>
+        <div class="modal-body">
+            <div class="city-map" id="city-map">
+                <canvas id="map3d"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-mask" id="stock-modal" style="display:none">
+    <div class="modal stock-modal">
+        <div class="modal-head stock-head">
+            <span class="modal-title">📈 临江证券交易所</span>
+            <span class="modal-step">WORKER STOCK EXCHANGE · 红涨绿跌</span>
+            <button class="btn btn-mini" onclick="closeStockModal()">✕ 关闭</button>
+        </div>
+        <div class="stock-body">
+            <div class="stock-quotes" id="stock-quotes"></div>
+            <div class="stock-chart-panel">
+                <div class="stock-chart-head">
+                    <span id="stock-chart-title">选择一只股票查看走势</span>
+                    <span id="stock-chart-price" class="stock-price"></span>
+                    <span id="stock-chart-chg" class="stock-chg"></span>
+                </div>
+                <canvas id="stock-canvas" width="520" height="240"></canvas>
+                <p class="stock-desc" id="stock-desc"></p>
+            </div>
+            <div class="stock-trade">
+                <div class="trade-portfolio" id="stock-hold"></div>
+                <div class="trade-ops">
+                    <label>数量（股，1手=100）</label>
+                    <div class="trade-qty">
+                        <input id="stock-qty" type="number" min="100" step="100" value="100">
+                        <button class="btn-trade btn-buy" onclick="stockOrder('buy')">买 入</button>
+                        <button class="btn-trade btn-sell" onclick="stockOrder('sell')">卖 出</button>
+                    </div>
+                    <p class="trade-tip" id="stock-tip"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-mask" id="bag-modal" style="display:none">
+    <div class="modal bag-modal">
+        <div class="modal-head bag-head">
+            <span class="modal-title">🎒 我的背包</span>
+            <span class="modal-step" id="bag-summary">穿戴加成 · 查看换装</span>
+            <button class="btn btn-mini" onclick="closeBagModal()">✕ 关闭</button>
+        </div>
+        <div class="bag-summary" id="bag-bonus"></div>
+        <div class="bag-list" id="bag-list"></div>
+        <div class="bag-tip">同类别（衣服/裤子/手表/数码）只可穿戴一件，穿上新装备会自动换下同类旧装备 · 职业要求着装需先穿戴（bag / wear 命令行同样可用）</div>
+    </div>
+</div>
+
+<div class="modal-mask" id="quiz-modal" style="display:none">
+    <div class="modal quiz-modal">
+        <div class="modal-head quiz-head">
+            <span class="modal-title" id="quiz-title">📝 答题</span>
+            <span class="modal-step" id="quiz-step"></span>
+            <button class="btn btn-mini" onclick="closeQuizModal()">✕ 关闭</button>
+        </div>
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-progress-bar"></div></div>
+        <div class="quiz-body">
+            <div class="quiz-question" id="quiz-question"></div>
+            <div class="quiz-options" id="quiz-options"></div>
+            <div class="quiz-result" id="quiz-result" style="display:none"></div>
+        </div>
+        <div class="quiz-foot">
+            <span class="quiz-nav" id="quiz-nav"></span>
+            <span class="quiz-actions">
+                <button class="btn btn-mini" id="quiz-prev" onclick="quizPrev()" style="display:none">← 上一题</button>
+                <button class="btn btn-mini btn-primary" id="quiz-next" onclick="quizNext()" style="display:none">下一题 →</button>
+                <button class="btn btn-mini btn-success" id="quiz-submit" onclick="quizSubmit()" style="display:none">✔ 交卷</button>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-mask" id="college-modal" style="display:none">
+    <div class="modal college-modal">
+        <div class="modal-head">
+            <span class="modal-title">🎓 临江成人大学</span>
+            <span class="modal-step" id="college-step">ADULT UNIVERSITY</span>
+            <button class="btn btn-mini" onclick="closeCollegeModal()">✕ 关闭</button>
+        </div>
+        <div class="modal-body college-body">
+            <div class="college-status" id="college-status"></div>
+            <div class="college-list" id="college-list"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-mask" id="npc-modal" style="display:none">
+    <div class="modal npc-modal">
+        <div class="modal-head">
+            <span class="modal-title">💞 城市熟人</span>
+            <span class="modal-step" id="npc-modal-step">点击头像互动</span>
+            <button class="btn btn-mini" onclick="closeNpcModal()">✕ 关闭</button>
+        </div>
+        <div class="npc-modal-body" id="npc-modal-list"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="npc-detail-modal" style="display:none">
+    <div class="modal npc-detail-modal">
+        <div class="modal-head">
+            <span class="modal-title" id="npc-detail-title">NPC</span>
+            <span class="modal-step" id="npc-detail-relation"></span>
+            <button class="btn btn-mini" onclick="closeNpcDetail()">✕ 关闭</button>
+        </div>
+        <div class="npc-detail-body" id="npc-detail-body"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="ktv-modal" style="display:none">
+    <div class="modal ktv-modal">
+        <div class="modal-head">
+            <span class="modal-title">🎤 天上人间 KTV</span>
+            <span class="modal-step" id="ktv-step">SING & DRINK</span>
+            <button class="btn btn-mini" onclick="closeKtvModal()">✕ 关闭</button>
+        </div>
+        <div class="modal-body ktv-body">
+            <div class="ent-note">点一位公主/少爷陪你唱歌喝酒（按小时计费）· 好感 60+ 可私下交流，有钱的大爷人人追捧</div>
+            <div class="ent-list" id="ktv-list"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-mask" id="pvclub-modal" style="display:none">
+    <div class="modal pvclub-modal">
+        <div class="modal-head">
+            <span class="modal-title">💆 云水间私人会所</span>
+            <span class="modal-step" id="pv-step">VIP SPA</span>
+            <button class="btn btn-mini" onclick="closePvclubModal()">✕ 关闭</button>
+        </div>
+        <div class="modal-body pvclub-body">
+            <div class="ent-note">金牌技师随你点（按次计费）· 常来照顾生意会有交情，好感 60+ 可私下交流</div>
+            <div class="ent-list" id="pv-list"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-mask" id="car-modal" style="display:none">
+    <div class="modal car-modal">
+        <div class="modal-head">
+            <span class="modal-title">🚗 我的座驾</span>
+            <span class="modal-step">CAR & DRIVE</span>
+            <button class="btn btn-mini" onclick="closeCarModal()">✕ 关闭</button>
+        </div>
+        <div class="modal-body car-body" id="car-body"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="cert-modal" style="display:none">
+    <div class="modal cert-modal">
+        <div class="modal-head cert-head">
+            <span class="modal-title">📜 证书墙</span>
+            <span class="modal-step">WORKER SKILL CERTIFICATES</span>
+            <button class="btn btn-mini" onclick="closeCertModal()">✕ 关闭</button>
+        </div>
+        <div class="cert-body" id="cert-body"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="biz-modal" style="display:none">
+    <div class="modal biz-modal">
+        <div class="modal-head biz-head">
+            <span class="modal-title">🏪 创业孵化中心</span>
+            <span class="modal-step">FROM WORKER TO BOSS</span>
+            <button class="btn btn-mini" onclick="closeBizModal()">✕ 关闭</button>
+        </div>
+        <div class="biz-body" id="biz-body"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="stall-modal" style="display:none">
+    <div class="modal stall-modal">
+        <div class="modal-head stall-head">
+            <span class="modal-title">🏪 摆地摊选货</span>
+            <span class="modal-step">STREET VENDOR</span>
+            <button class="btn btn-mini" onclick="closeStallModal()">✕ 关闭</button>
+        </div>
+        <div class="stall-body" id="stall-body"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="wholesale-modal" style="display:none">
+    <div class="modal wholesale-modal">
+        <div class="modal-head wholesale-head">
+            <span class="modal-title">📦 临江小商品批发城</span>
+            <span class="modal-step">WHOLESALE MARKET</span>
+            <button class="btn btn-mini" onclick="closeWholesaleModal()">✕ 关闭</button>
+        </div>
+        <div class="wholesale-body" id="wholesale-body"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="carshop-modal" style="display:none">
+    <div class="modal wholesale-modal">
+        <div class="modal-head wholesale-head">
+            <span class="modal-title">🚗 汽车 4S 店</span>
+            <span class="modal-step">AUTO DEALER</span>
+            <button class="btn btn-mini" onclick="closeCarshopModal()">✕ 关闭</button>
+        </div>
+        <div class="ws-tabs">
+            <button class="ws-tab active" id="ws-tab-buy" onclick="carshopTab('buy', this)">🚗 买车</button>
+            <button class="ws-tab" id="ws-tab-sell" onclick="carshopTab('sell', this)">💰 卖车</button>
+        </div>
+        <div class="wholesale-body" id="carshop-list"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="estate-modal" style="display:none">
+    <div class="modal wholesale-modal">
+        <div class="modal-head wholesale-head">
+            <span class="modal-title">🏠 安家房产 · 在售房源</span>
+            <span class="modal-step">REAL ESTATE</span>
+            <button class="btn btn-mini" onclick="closeEstateModal()">✕ 关闭</button>
+        </div>
+        <div class="wholesale-body" id="estate-list"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="bj-modal" style="display:none">
+    <div class="modal bj-modal">
+        <div class="modal-head bj-head">
+            <span class="modal-title">🃏 公园牌局 · 21点</span>
+            <span class="modal-step">BLACKJACK</span>
+            <button class="btn btn-mini" onclick="closeBjModal()">✕ 关闭</button>
+        </div>
+        <div class="bj-body" id="bj-table"></div>
+    </div>
+</div>
+
+<div class="modal-mask" id="gomoku-modal" style="display:none">
+    <div class="modal gomoku-modal">
+        <div class="modal-head gomoku-head">
+            <span class="modal-title">♟️ 公园棋局 · 五子棋</span>
+            <span class="modal-step">GOMOKU</span>
+            <button class="btn btn-mini" onclick="closeGomokuModal()">✕ 关闭</button>
+        </div>
+        <div class="gomoku-body">
+            <div class="gomoku-info" id="gomoku-info"></div>
+            <div class="gomoku-board" id="gomoku-board"></div>
+            <div class="gomoku-actions">
+                <span class="gomoku-tip">下注：<input id="gomoku-bet" type="number" min="10" step="10" value="100" class="bj-bet-input"> 元</span>
+                <button class="bj-btn start" id="gomoku-start" onclick="gomokuStart()">♟️ 开局</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-mask" id="phone-modal" style="display:none">
+    <div class="modal phone-modal">
+        <div class="phone-shell">
+            <span class="ps-btn-vu" title="音量+"></span>
+            <span class="ps-btn-vd" title="音量-"></span>
+            <span class="ps-btn-pw" title="电源键"></span>
+            <div class="ps-notch"></div>
+            <div class="ps-statusbar">
+                <span class="ps-time" id="ps-time">20:45</span>
+                <span class="ps-ic">📶 🔋</span>
+                <button class="ps-close" onclick="closePhoneModal()" title="关闭">✕</button>
+            </div>
+            <div class="ps-screen" id="phone-screen"></div>
+            <div class="phone-tabs">
+                <button class="phone-tab" data-pt="chat" onclick="phoneOpenApp('chat')" title="微信"><span class="pt-ico">💬</span></button>
+                <button class="phone-tab" data-pt="call" onclick="phoneOpenApp('call')" title="电话"><span class="pt-ico">📞</span></button>
+                <button class="phone-tab" data-pt="video" onclick="phoneOpenApp('video')" title="短视频"><span class="pt-ico">🎬</span></button>
+                <button class="phone-tab" data-pt="contacts" onclick="phoneOpenApp('contacts')" title="通讯录"><span class="pt-ico">👥</span></button>
+            </div>
+            <div class="ps-homebar" onclick="phoneGoHome()" title="回到主屏幕"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-mask" id="shop-modal" style="display:none">
+  <div class="modal shop-modal">
+    <div class="modal-head"><span class="modal-title">🛍️ 万象商场</span><span class="modal-step">SHOPPING MALL</span><button class="btn btn-mini" onclick="closeShopModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="shop-cats" id="shop-cats"></div>
+      <div class="shop-grid" id="shop-grid"></div>
+      <div class="shop-foot" id="shop-foot"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="jobs-modal" style="display:none">
+  <div class="modal jobs-modal">
+    <div class="modal-head"><span class="modal-title">🏢 人才市场</span><span class="modal-step">JOB MARKET</span><button class="btn btn-mini" onclick="closeJobsModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="jobs-list" id="jobs-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="train-modal" style="display:none">
+  <div class="modal train-modal">
+    <div class="modal-head"><span class="modal-title">🎓 成人技能培训中心</span><span class="modal-step">TRAINING CENTER</span><button class="btn btn-mini" onclick="closeTrainModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="train-list" id="train-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="housing-modal" style="display:none">
+  <div class="modal housing-modal">
+    <div class="modal-head"><span class="modal-title">🏘️ 住宿</span><span class="modal-step">HOUSING</span><button class="btn btn-mini" onclick="closeHousingModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="housing-list" id="housing-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="eat-modal" style="display:none">
+  <div class="modal eat-modal">
+    <div class="modal-head"><span class="modal-title">🍜 点餐</span><span class="modal-step">MENU</span><button class="btn btn-mini" onclick="closeEatModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="eat-list" id="eat-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="lottery-modal" style="display:none">
+  <div class="modal lottery-modal">
+    <div class="modal-head"><span class="modal-title">🎰 好运来彩票站</span><span class="modal-step">LOTTERY</span><button class="btn btn-mini" onclick="closeLotteryModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="lottery-tabs">
+        <button class="lottery-tab active" data-lt="scratch" onclick="lotteryTab('scratch')">🎫 刮刮乐</button>
+        <button class="lottery-tab" data-lt="ssq" onclick="lotteryTab('ssq')">🔴 双色球</button>
+      </div>
+      <div class="lottery-screen" id="lottery-screen"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="bank-modal" style="display:none">
+  <div class="modal bank-modal">
+    <div class="modal-head"><span class="modal-title">🏦 临江银行</span><span class="modal-step">CITY BANK · 储蓄 / 贷款 / 理财</span><button class="btn btn-mini" onclick="closeBankModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="bank-tabs">
+        <button class="bank-tab active" data-bt="save" onclick="bankTab('save')">💰 储蓄</button>
+        <button class="bank-tab" data-bt="loan" onclick="bankTab('loan')">🏦 贷款</button>
+        <button class="bank-tab" data-bt="finance" onclick="bankTab('finance')">📈 理财</button>
+      </div>
+      <div class="bank-screen" id="bank-screen"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="ach-modal" style="display:none">
+  <div class="modal ach-modal">
+    <div class="modal-head"><span class="modal-title">🏆 成就墙</span><span class="modal-step">ACHIEVEMENTS</span><button class="btn btn-mini" onclick="closeAchModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="ach-list" id="ach-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="assets-modal" style="display:none">
+  <div class="modal assets-modal">
+    <div class="modal-head"><span class="modal-title">💼 资产总览</span><span class="modal-step">ASSETS</span><button class="btn btn-mini" onclick="closeAssetsModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="assets-total" id="assets-total"></div>
+      <div class="assets-sections" id="assets-sections"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="action-modal" style="display:none">
+  <div class="modal action-modal">
+    <div class="modal-head"><span class="modal-title">🧭 行为面板</span><span class="modal-step">ACTIONS</span><button class="btn btn-mini" onclick="closeActionModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="action-tip" id="action-tip"></div>
+      <div class="action-grid" id="action-grid"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="quest-modal" style="display:none">
+  <div class="modal quest-modal">
+    <div class="modal-head quest-head"><span class="modal-title">📋 每日任务</span><span class="modal-step">DAILY QUESTS · 每天清晨刷新 3 个，完成自动领奖</span><button class="btn btn-mini" onclick="closeQuestModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="quest-modal-body" id="quest-modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask" id="status-modal" style="display:none">
+  <div class="modal status-modal">
+    <div class="modal-head"><span class="modal-title">📊 角色状态</span><span class="modal-step">STATUS</span><button class="btn btn-mini" onclick="closeStatusModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="status-info" id="status-info"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 家居布置 -->
+<div class="modal-mask" id="home-modal" style="display:none">
+  <div class="modal home-modal">
+    <div class="modal-head home-head"><span class="modal-title">🛋️ 家居布置</span><span class="modal-step">HOME DECOR · 提升生活质量</span><button class="btn btn-mini" onclick="closeHomeModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="home-preview" id="home-preview"></div>
+      <div class="home-owned" id="home-owned"></div>
+      <div class="home-shop" id="home-shop"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 电脑桌面（Windows 模拟） -->
+<div class="modal-mask" id="pc-modal" style="display:none">
+  <div class="pc-desktop">
+    <div class="pc-taskbar">
+      <div class="pc-start" onclick="pcToggleStart()"><span>🪟</span><b>开始</b></div>
+      <div class="pc-task-apps" id="pc-task-apps"></div>
+      <div class="pc-tray">
+        <span class="pc-tray-net">📶</span>
+        <span class="pc-tray-vol">🔊</span>
+        <span class="pc-tray-clock" id="pc-tray-clock"></span>
+      </div>
+    </div>
+    <div class="pc-icons" id="pc-icons"></div>
+    <div class="pc-start-menu" id="pc-start-menu" style="display:none"></div>
+    <div class="pc-windows" id="pc-windows"></div>
+  </div>
+</div>
+
+<!-- 家庭互动 -->
+<div class="modal-mask" id="family-modal" style="display:none">
+  <div class="modal family-modal">
+    <div class="modal-head family-head"><span class="modal-title">💑 温馨小家</span><span class="modal-step" id="family-step">FAMILY · 与TA在一起</span><button class="btn btn-mini" onclick="closeFamilyModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="family-partner" id="family-partner"></div>
+      <div class="family-actions" id="family-actions"></div>
+      <div class="family-log" id="family-log"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 工作小游戏 -->
+<div class="modal-mask" id="work-modal" style="display:none">
+  <div class="modal work-modal">
+    <div class="modal-head work-head"><span class="modal-title" id="work-title">💪 上工</span><span class="modal-step" id="work-step">WORK · 干完这单领工资</span><button class="btn btn-mini" onclick="closeWorkModal()">✕ 关闭</button></div>
+    <div class="modal-body">
+      <div class="work-game" id="work-game"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script th:src="@{/vendor/jquery.min.js}"></script>
+<script th:src="@{/vendor/three.min.js?v=20261016_v1}"></script>
+<script th:src="@{/vendor/xterm.js}"></script>
+<script th:src="@{/vendor/xterm-addon-fit.js}"></script>
+<script th:src="@{/js/app.js?v=20261012_v144}"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>室内 · Worker Simulator</title>
+<meta name="theme-color" content="#0a0e18" />
+<link rel="stylesheet" th:href="@{/css/room.css?v=20261012_v3}">
+</head>
+<body>
+<!-- 3D 室内画布 -->
+<div id="room3d"></div>
+
+<!-- 顶栏 -->
+<header class="rt-bar">
+  <div class="rt-left">
+    <span class="rt-logo">🏠 <b id="rt-name">银行</b></span>
+    <span class="rt-chip" id="rt-type">金融</span>
+  </div>
+  <div class="rt-right">
+    <div class="rt-clock" id="rt-clock">
+      <span class="rtc-ico" id="rtc-ico">☀️</span>
+      <span class="rtc-time" id="rtc-time">08:30</span>
+      <span class="rtc-phase" id="rtc-phase">白天</span>
+    </div>
+    <button class="rt-btn" id="rt-leave">🚪 离开地点</button>
+  </div>
+</header>
+
+<!-- HUD 属性条 -->
+<div class="rt-hud rt-stats" id="rt-stats">
+  <span class="rs-item" title="现金">💰 <b id="rs-money">0</b></span>
+  <span class="rs-item" title="存款">🏦 <b id="rs-bank">0</b></span>
+  <span class="rs-item" title="学历">🎓 <b id="rs-edu">——</b></span>
+  <span class="rs-item" title="职业">💼 <b id="rs-job">无业</b></span>
+  <span class="rs-item" title="体力">⚡ <b id="rs-stamina">100</b></span>
+  <span class="rs-item" title="心情">😊 <b id="rs-mood">100</b></span>
+  <span class="rs-item" title="声望">⭐ <b id="rs-prestige">0</b></span>
+</div>
+
+<!-- 操作指南 -->
+<div class="rt-hud rt-hint" id="rt-hint">
+  <div class="rh-title">🧭 室内操作</div>
+  <div class="rh-row"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>在室内行走</span></div>
+  <div class="rh-row"><kbd>按住左键拖动</kbd><span>调整视角</span></div>
+  <div class="rh-row"><kbd>Esc</kbd><span>离开地点</span></div>
+  <div class="rh-row rh-mini"><span>点击下方按钮即可办理业务</span></div>
+</div>
+
+<!-- 互动面板（纯按钮 UI，无命令行） -->
+<div class="rt-panel" id="rt-panel">
+  <div class="rp-head">
+    <span class="rp-head-title">📍 <b id="rp-loc">银行</b> · 业务办理</span>
+    <button class="rp-min" id="rp-min" title="收起/展开">–</button>
+  </div>
+  <div class="rp-body">
+    <div class="rp-groups" id="rp-groups"></div>
+    <div class="rp-feed" id="rp-feed"></div>
+  </div>
+</div>
+
+<!-- 过渡遮罩 -->
+<div class="rt-loading" id="rt-loading">
+  <div class="rl-inner">
+    <div class="rl-ring"><span class="rl-ring-core">🏠</span></div>
+    <div class="rl-text" id="rt-loading-text">正在进入室内场景…</div>
+    <div class="rl-bar"><i></i></div>
+    <div class="rl-sub">布置家具与灯光中，请稍候…</div>
+  </div>
+</div>
+
+<script th:src="@{/vendor/three-all-r160.js?v=20261016_wg7}"></script>
+<script th:src="@{/js/room-cmds.js?v=20261012_v1}"></script>
+<script th:src="@{/js/room.js?v=20261012_v3}"></script>
+</body>
+</html>

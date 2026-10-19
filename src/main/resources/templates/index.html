@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Worker Simulator · 城市求生</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧱</text></svg>">
+</head>
+<body class="title-body">
+
+<div class="title-bg"></div>
+<div class="title-overlay"></div>
+
+<main class="title-main">
+    <div class="launcher">
+        <div class="launcher-bar">
+            <span class="launcher-dots"><i></i><i></i><i></i></span>
+            <span class="launcher-title">worker_simulator — 启动器</span>
+            <span class="launcher-tag">v1.0</span>
+        </div>
+        <div class="launcher-body">
+            <div class="launcher-brand">
+                <span class="brand-mark">&gt;_ WORKER SIM</span>
+                <h1 class="brand-name">Worker Simulator</h1>
+                <p class="brand-sub">CITY SURVIVAL SIM <b>·</b> 城市求生</p>
+            </div>
+            <p class="launcher-slogan" id="slogan">「 从一无所有，到在这座城市活下去 」</p>
+            <div class="launcher-features">
+                <span>搬砖打工</span><span>成人培训</span><span>街头觅食</span>
+                <span>城市恋爱</span><span>买房买车</span><span>一夜暴富</span>
+            </div>
+            <div class="launcher-actions">
+                <button class="btn btn-primary btn-big" id="btn-newgame" onclick="openWizard()">
+                    <span class="btn-icon">▶</span> 开始新的打工生涯
+                </button>
+                <button class="btn btn-ghost btn-big" id="btn-load" onclick="openLoad()">
+                    <span class="btn-icon">📂</span> 读取存档
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="title-footer">
+        <span>Spring Boot 3.3.5 · Thymeleaf · jQuery · xterm.js</span>
+        <span class="sep">|</span>
+        <span>1 游戏分钟 = 1 现实秒</span>
+        <span class="sep">|</span>
+        <span>配置可改 <code>config/game-config.json</code></span>
+    </footer>
+</main>
+
+<!-- ============ 创建角色向导 ============ -->
+<div class="modal-mask" id="wizard-mask" style="display:none">
+    <div class="modal wizard-modal">
+        <div class="modal-head">
+            <span class="modal-title">📝 创建打工人</span>
+            <span class="modal-step" id="wizard-step">第 1 / 5 步</span>
+        </div>
+        <div class="modal-body" id="wizard-body"></div>
+        <div class="modal-foot">
+            <button class="btn btn-ghost" id="wizard-prev" style="display:none" onclick="wizardPrev()">上一步</button>
+            <button class="btn btn-primary" id="wizard-next" onclick="wizardNext()">下一步</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============ 读档弹窗 ============ -->
+<div class="modal-mask" id="load-mask" style="display:none">
+    <div class="modal">
+        <div class="modal-head">
+            <span class="modal-title">📂 读取存档</span>
+        </div>
+        <div class="modal-body" id="load-body"><p class="dim">加载中……</p></div>
+        <div class="modal-foot">
+            <button class="btn btn-ghost" onclick="closeModal('load-mask')">取消</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script th:src="@{/vendor/jquery.min.js}"></script>
+<script th:src="@{/vendor/three.min.js?v=20261016_v1}"></script>
+<script th:src="@{/js/app.js?v=20261012_v144}"></script>
+</body>
+</html>
